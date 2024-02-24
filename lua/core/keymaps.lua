@@ -1,0 +1,76 @@
+vim.keymap.set('n', '<Esc>', function()
+  vim.cmd 'noh'
+  -- vim.cmd('Noice dismiss')
+end)
+
+vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle nvimtree' })
+
+vim.keymap.set('n', '<leader>fm', function()
+  require('conform').format {
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 4000,
+  }
+end, { desc = 'Format file or range (in visual mode)' })
+
+vim.keymap.set('n', 'gX', function()
+  local word = vim.fn.expand '<cfile>'
+  local url = 'https://github.com/' .. word
+  vim.ui.open(url)
+end, { desc = '󰙍 Open github repo' })
+
+vim.keymap.set('i', '<C-Up>', '<CMD>m .-2<CR>==', { desc = '󰜸 Move line up' })
+vim.keymap.set('i', '<C-Down>', '<CMD>m .+1<CR>==', { desc = '󰜯 Move line down' })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [q]uickfix list' })
+
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+--
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+vim.keymap.set('n', '<left>', '<CMD>vertical resize -1<CR>', { desc = 'Vertical +' })
+vim.keymap.set('n', '<right>', '<CMD>vertical resize +1<CR>', { desc = 'Vertical -' })
+vim.keymap.set('n', '<up>', '<CMD>resize -1<CR>', { desc = 'Horizontal +' })
+vim.keymap.set('n', '<down>', '<CMD>resize +1<CR>', { desc = 'Horizontal -' })
+
+vim.keymap.set('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>tp', '<CMD>tabp<CR>', { desc = 'Previous tab' })
+vim.keymap.set('n', '<leader>tn', '<CMD>$tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>tc', '<CMD>tabc<CR>', { desc = 'Close tab' })
+
+vim.keymap.set('n', 'gw', '<CMD>silent grep! <cword> | cw<CR>', { desc = 'Grep word' })
+
+vim.keymap.set('n', 'zR', function()
+  require('ufo').openAllFolds()
+end, { desc = 'Open all folds' })
+
+vim.keymap.set('n', 'zM', function()
+  require('ufo').closeAllFolds()
+end, { desc = 'Close all folds' })
+
+vim.keymap.set('n', 'zr', function()
+  require('ufo').openFoldsExceptKinds()
+end, { desc = 'Open all folds except kinds' })
+
+vim.keymap.set('n', 'zm', function()
+  require('ufo').closeFoldsWith()
+end, { desc = 'Close all folds with' })
+
+vim.keymap.set('n', 'K', function()
+  local winid = require('ufo').peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
+end, { desc = 'Peek Definition' })
