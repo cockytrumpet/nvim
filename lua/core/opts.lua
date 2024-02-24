@@ -24,6 +24,7 @@ vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.inccommand = 'split'
 vim.opt.inccommand = 'split'
 vim.opt.iskeyword:append '-'
+vim.opt.laststatus = 3
 vim.opt.lazyredraw = false -- Won't be redrawn while executing macros register and other commands.
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -56,7 +57,6 @@ vim.opt.updatetime = 250
 vim.opt.whichwrap:append '<,>,[,],h,l'
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
-
 vim.cmd 'set rtp+=/opt/homebrew/opt/fzf'
 
 if vim.fn.has 'nvim-0.10' == 1 then

@@ -1,7 +1,68 @@
 vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'noh'
-  -- vim.cmd('Noice dismiss')
+  vim.cmd 'Noice dismiss'
 end)
+
+-- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
+-- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
+-- empty mode is same as using <cmd> :map
+-- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
+-- vim.keymap.set({ 'n', 'v', 'x' }, 'j', 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { desc = 'Move down' })
+-- vim.keymap.set({ 'n', 'v', 'x' }, 'k', 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { desc = 'Move up' })
+
+vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'Copy whole file' })
+
+vim.keymap.set('n', '<leader>b', '<CMD>enew<CR>', { desc = 'New buffer' })
+
+vim.keymap.set('n', '<leader>/', function()
+  require('Comment.api').toggle.linewise.current()
+end, { desc = 'Toggle comment' })
+
+vim.keymap.set('v', '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'Toggle comment' })
+
+vim.keymap.set('n', '<leader>zZ', function()
+  require('zen-mode').setup {
+    window = {
+      width = 90,
+      options = {},
+    },
+  }
+  require('zen-mode').toggle()
+  vim.wo.wrap = true
+  vim.wo.number = true
+  vim.wo.rnu = true
+end)
+
+vim.keymap.set('n', '<leader>zz', function()
+  require('zen-mode').setup {
+    window = {
+      backdrop = 0.93,
+      width = 100,
+      height = 1,
+    },
+    plugins = {
+      options = {
+        enabled = true,
+        showcmd = false,
+        laststatus = 0,
+      },
+      -- twilight = { enabled = false },
+      gitsigns = { enabled = true },
+      wezterm = {
+        enabled = true,
+        -- can be either an absolute font size or the number of incremental steps
+        font = '+2', -- (10% increase per step)
+      },
+      tmux = { enabled = true },
+    },
+  }
+  require('zen-mode').toggle()
+end)
+
+vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
+vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
+vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
+vim.keymap.set('n', '<leader>st', '<CMD>TodoTelescope<CR>', { desc = ' [S]earch [T]ODO' })
 
 vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle nvimtree' })
 
@@ -12,6 +73,10 @@ vim.keymap.set('n', '<leader>fm', function()
     timeout_ms = 4000,
   }
 end, { desc = 'Format file or range (in visual mode)' })
+
+vim.keymap.set('n', '<leader>i', function()
+  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+end, { desc = 'Inlay Hints' })
 
 vim.keymap.set('n', 'gX', function()
   local word = vim.fn.expand '<cfile>'

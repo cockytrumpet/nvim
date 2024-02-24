@@ -158,11 +158,24 @@ local M = { -- LSP Configuration & Plugins
                 '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               },
+              maxPreload = 100000,
+              preloadFileSize = 10000,
+
               -- If lua_ls is really slow on your computer, you can try this instead:
               -- library = { vim.env.VIMRUNTIME },
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = {
+              globals = { 'vim' },
+            },
+            hint = {
+              enable = true,
+              setType = true,
+            },
+            telemetry = {
+              enable = false,
+            },
           },
         },
       },
@@ -172,7 +185,38 @@ local M = { -- LSP Configuration & Plugins
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format lua code
+      -- lua stuff
+      'stylua',
+
+      -- web dev stuff
+      'css-lsp',
+      'html-lsp',
+      'typescript-language-server',
+      'deno',
+      'prettier',
+
+      -- c/cpp stuff
+      'clang-format',
+      'codelldb',
+
+      -- Python
+      'black',
+      'debugpy',
+      'isort',
+
+      -- Json
+      'jsonlint',
+      'json-lsp',
+
+      -- Ocaml
+      'ocaml-lsp',
+      'ocamlformat',
+
+      -- Rust
+      'rust-analyzer',
+
+      'dockerfile-language-server',
+      'yaml-language-server',
     })
 
     -- Ensure the servers and tools above are installed
