@@ -1,5 +1,6 @@
 local M = {
   'nvim-tree/nvim-tree.lua',
+  event = 'VeryLazy',
   dependencies = {
     'antosha417/nvim-lsp-file-operations',
     config = function()

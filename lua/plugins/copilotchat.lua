@@ -15,7 +15,7 @@ local M = {
       vim.notify 'CopilotChat - Updated remote plugins. Please restart Neovim.'
     end, 3000)
   end,
-  event = 'VeryLazy',
+  cmd = { 'CopilotChatTests', 'CopilotChatExplain', 'CopilotChatReview', 'CopilotChatRefactor' },
   keys = {
     { '<leader>cce', '<cmd>CopilotChatExplain<cr>', desc = 'CopilotChat - Explain code' },
     { '<leader>cct', '<cmd>CopilotChatTests<cr>', desc = 'CopilotChat - Generate tests' },

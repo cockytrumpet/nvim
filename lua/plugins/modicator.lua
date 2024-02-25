@@ -1,6 +1,7 @@
 local M = {
   'mawkler/modicator.nvim',
-  event = 'BufWinEnter',
+  event = 'VeryLazy',
+  -- event = 'BufWinEnter',
   init = function()
     vim.o.cursorline = true
     vim.o.number = true

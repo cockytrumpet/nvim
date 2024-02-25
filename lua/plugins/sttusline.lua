@@ -1,11 +1,12 @@
 local M = {
   'sontungexpt/sttusline',
   priority = 999,
+  lazy = false,
   branch = 'table_version',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
-  event = { 'BufEnter' },
+  -- event = { 'BufEnter' },
   config = function(_, opts)
     require('sttusline').setup {
       on_attach = function(create_update_group) end,

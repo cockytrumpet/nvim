@@ -1,6 +1,6 @@
 local M = {
   'christoomey/vim-tmux-navigator',
-  lazy = false,
+  event = 'VimEnter',
 }
 
 return M

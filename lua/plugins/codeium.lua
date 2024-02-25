@@ -1,6 +1,6 @@
 local M = {
   'jcdickinson/codeium.nvim',
-  event = { 'InsertEnter', 'LspAttach' },
+  event = { 'InsertEnter' },
   config = function()
     require('codeium').setup()
   end,
