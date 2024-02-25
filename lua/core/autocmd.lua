@@ -65,9 +65,22 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
       'undotree',
     }
 
+    if vim.tbl_contains(ft_ignore, vim.bo.buftype) then
+      vim.cmd 'setlocal statuscolumn='
+      vim.o.scrolloff = 0
+      vim.o.number = false
+      vim.o.relativenumber = false
+    end
+
     if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
       vim.cmd 'setlocal statuscolumn='
       vim.o.scrolloff = 0
+      vim.o.number = false
+      vim.o.relativenumber = false
+    end
+
+    if vim.bo.buftype == 'terminal' then
+      vim.cmd 'startinsert | 1'
     end
   end,
 })

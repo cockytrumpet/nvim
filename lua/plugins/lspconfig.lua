@@ -52,6 +52,7 @@ local M = { -- LSP Configuration & Plugins
         --    See `:help CursorHold` for information about when this is executed
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
+--[[
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
           buffer = event.buf,
           callback = vim.lsp.buf.document_highlight,
@@ -61,6 +62,7 @@ local M = { -- LSP Configuration & Plugins
           buffer = event.buf,
           callback = vim.lsp.buf.clear_references,
         })
+]]
       end,
     })
 

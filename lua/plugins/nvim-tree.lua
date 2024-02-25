@@ -37,10 +37,10 @@ local M = {
     },
     view = {
       side = 'left',
-      width = { min = 10, padding = 2 },
+      width = { min = 40, padding = 2 },
     },
     hijack_unnamed_buffer_when_opening = true,
-    hijack_cursor = true,
+    hijack_cursor = false,
     sync_root_with_cwd = true,
     tab = {
       sync = {

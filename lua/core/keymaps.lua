@@ -12,6 +12,10 @@ end)
 
 vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'Copy whole file' })
 
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('n', '<leader>tv', '<CMD>vsplit term://zsh<CR>', { desc = 'Open terminal (vertical)' })
+vim.keymap.set('n', '<leader>th', '<CMD>split term://zsh<CR>', { desc = 'Open terminal (horizontal)' })
+
 vim.keymap.set('n', '<leader>b', '<CMD>enew<CR>', { desc = 'New buffer' })
 
 vim.keymap.set('n', '<leader>/', function()
@@ -59,10 +63,20 @@ vim.keymap.set('n', '<leader>zz', function()
   require('zen-mode').toggle()
 end)
 
+vim.keymap.set('n', '<leader>rf', function()
+  _G.run_code()
+end, { desc = 'run file' })
+
+vim.keymap.set('n', '<leader>m', '<CMD>TSJToggle<CR>', { desc = 'Split/Join' })
+
 vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
 vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
 vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
 vim.keymap.set('n', '<leader>st', '<CMD>TodoTelescope<CR>', { desc = ' [S]earch [T]ODO' })
+vim.keymap.set('n', '<leader>sc', '<CMD>Telescope git_status<CR>', { desc = ' [S]earch [C]hanges (git)' })
+vim.keymap.set('n', '<leader>sm', function()
+  require('telescope').extensions.notify.notify()
+end, { desc = ' [S]earch [M]essage history' })
 
 vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle nvimtree' })
 
@@ -74,7 +88,7 @@ vim.keymap.set('n', '<leader>fm', function()
   }
 end, { desc = 'Format file or range (in visual mode)' })
 
-vim.keymap.set('n', '<leader>i', function()
+vim.keymap.set('n', '<leader>h', function()
   vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Inlay Hints' })
 

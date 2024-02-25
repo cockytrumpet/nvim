@@ -1,5 +1,6 @@
 local M = {
   'sontungexpt/sttusline',
+  priority = 999,
   branch = 'table_version',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
