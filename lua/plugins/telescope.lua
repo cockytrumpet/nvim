@@ -23,33 +23,6 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
       'HPRIOR/telescope-gpt',
       dependencies = { 'nvim-telescope/telescope.nvim', 'jackMort/ChatGPT.nvim' },
     },
-    {
-      'nvim-telescope/telescope.nvim',
-      tag = '0.1.2',
-      lazy = false,
-      dependencies = { 'nvim-lua/plenary.nvim' },
-      version = false,
-      opts = {
-        extensions = {
-          gpt = {
-            title = 'Gpt Actions',
-            commands = {
-              'add_tests',
-              'chat',
-              'docstring',
-              'explain_code',
-              'fix_bugs',
-              'grammar_correction',
-              'interactive',
-              'optimize_code',
-              'summarize',
-              'translate',
-            },
-            theme = require('telescope.themes').get_dropdown {},
-          },
-        },
-      },
-    },
   },
   config = function()
     -- Insert mode: <c-/>
@@ -70,6 +43,22 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
+        },
+        ['gpt'] = {
+          title = 'Gpt Actions',
+          commands = {
+            'add_tests',
+            'chat',
+            'docstring',
+            'explain_code',
+            'fix_bugs',
+            'grammar_correction',
+            'interactive',
+            'optimize_code',
+            'summarize',
+            'translate',
+          },
+          theme = require('telescope.themes').get_dropdown {},
         },
       },
     }
