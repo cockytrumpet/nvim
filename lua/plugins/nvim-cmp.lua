@@ -36,7 +36,6 @@ local M = { -- Autocompletion
     'saadparwaiz1/cmp_luasnip',
     'zbirenbaum/copilot-cmp',
     'jcdickinson/codeium.nvim',
-    'zbirenbaum/copilot.lua',
     'onsails/lspkind.nvim',
 
     -- Adds other completion capabilities.
@@ -116,12 +115,12 @@ local M = { -- Autocompletion
         --
         -- <c-l> will move you to the right of each of the expansion locations.
         -- <c-h> is similar, except moving you backwards.
-        ['<C-.>'] = cmp.mapping(function()
+        ['<C-l>'] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { 'i', 's' }),
-        ['<C-,>'] = cmp.mapping(function()
+        ['<C-h>'] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end

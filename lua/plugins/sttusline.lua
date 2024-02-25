@@ -33,7 +33,7 @@ local M = {
         '%=',
         'diagnostics',
         'lsps-formatters',
-        'copilot',
+        -- 'copilot',
         'copilot-loading',
         'indent',
         'encoding',

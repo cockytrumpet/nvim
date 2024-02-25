@@ -7,7 +7,7 @@ vim.g.maplocalleader = ' '
 vim.opt.backup = false -- creates a backup file
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '', lastline = ' ' } -- make EndOfBuffer invisible

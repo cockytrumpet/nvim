@@ -3,6 +3,8 @@ vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'Noice dismiss'
 end)
 
+vim.keymap.set('n', '<leader>x', '<CMD>bd<CR>', { desc = 'Close buffer' })
+
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 -- empty mode is same as using <cmd> :map
@@ -16,7 +18,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', '<leader>tv', '<CMD>vsplit term://zsh<CR>', { desc = 'Open terminal (vertical)' })
 vim.keymap.set('n', '<leader>th', '<CMD>split term://zsh<CR>', { desc = 'Open terminal (horizontal)' })
 
-vim.keymap.set('n', '<leader>b', '<CMD>enew<CR>', { desc = 'New buffer' })
+-- vim.keymap.set('n', '<leader>b', '<CMD>enew<CR>', { desc = 'New buffer' })
 
 vim.keymap.set('n', '<leader>/', function()
   require('Comment.api').toggle.linewise.current()
@@ -69,6 +71,7 @@ end, { desc = 'run file' })
 
 vim.keymap.set('n', '<leader>m', '<CMD>TSJToggle<CR>', { desc = 'Split/Join' })
 
+vim.keymap.set('n', '<leader>sl', '<CMD>Telescope live_grep<CR>', { desc = 'Live grep' })
 vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
 vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
 vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
