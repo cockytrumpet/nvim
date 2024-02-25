@@ -4,6 +4,9 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
+    'nvim-tree/nvim-web-devicons',
+    'benfowler/telescope-luasnip.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -12,11 +15,40 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
-    { 'nvim-tree/nvim-web-devicons' },
     {
       'nvim-telescope/telescope-file-browser.nvim',
       dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    },
+    {
+      'HPRIOR/telescope-gpt',
+      dependencies = { 'nvim-telescope/telescope.nvim', 'jackMort/ChatGPT.nvim' },
+    },
+    {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.2',
+      lazy = false,
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      version = false,
+      opts = {
+        extensions = {
+          gpt = {
+            title = 'Gpt Actions',
+            commands = {
+              'add_tests',
+              'chat',
+              'docstring',
+              'explain_code',
+              'fix_bugs',
+              'grammar_correction',
+              'interactive',
+              'optimize_code',
+              'summarize',
+              'translate',
+            },
+            theme = require('telescope.themes').get_dropdown {},
+          },
+        },
+      },
     },
   },
   config = function()
@@ -45,6 +77,9 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension, 'file_browser')
+    pcall(require('telescope').load_extension, 'luasnip')
+    pcall(require('telescope').load_extension, 'gpt')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'

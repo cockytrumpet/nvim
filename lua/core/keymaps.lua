@@ -77,6 +77,7 @@ vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggl
 vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
 vim.keymap.set('n', '<leader>st', '<CMD>TodoTelescope<CR>', { desc = ' [S]earch [T]ODO' })
 vim.keymap.set('n', '<leader>sc', '<CMD>Telescope git_status<CR>', { desc = ' [S]earch [C]hanges (git)' })
+vim.keymap.set('n', '<leader>sa', '<CMD>Telescope gpt<CR>', { desc = ' [S]earch [A]I (ChatGPT)' })
 vim.keymap.set('n', '<leader>sm', function()
   require('telescope').extensions.notify.notify()
 end, { desc = ' [S]earch [M]essage history' })
