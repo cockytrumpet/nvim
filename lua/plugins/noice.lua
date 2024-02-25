@@ -143,8 +143,8 @@ local M = {
           opts = {
             focusable = false,
             size = {
-              max_height = 15,
-              max_width = 60,
+              height = 'auto',
+              width = 'auto',
             },
             win_options = {
               wrap = false,

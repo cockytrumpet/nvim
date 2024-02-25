@@ -29,7 +29,7 @@ local cmp_kinds = {
 
 local M = { -- Autocompletion
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     'L3MON4D3/LuaSnip',
@@ -64,6 +64,7 @@ local M = { -- Autocompletion
           scrollbar = true,
           bordered = true,
           border = 'rounded',
+          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo',
         },
         documentation = {
           scrolloff = 0,
@@ -71,6 +72,7 @@ local M = { -- Autocompletion
           scrollbar = false,
           bordered = true,
           border = 'rounded',
+          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo',
         },
       },
       completion = {
@@ -79,10 +81,11 @@ local M = { -- Autocompletion
         keyword_length = 2,
       },
       experimental = {
-        ghost_text = false,
-        --[[ ghost_text = {
-      hl_group = "Comment",
-    }, ]]
+        --[[
+        ghost_text = {
+          hl_group = 'Comment',
+        },
+]]
       },
       snippet = {
         expand = function(args)
