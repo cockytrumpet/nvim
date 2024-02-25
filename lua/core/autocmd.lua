@@ -40,46 +40,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Disable status column in the following files
+-- Enable status column in the following files
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   callback = function()
-    local ft_ignore = {
-      'Outline',
-      'man',
-      'help',
-      'neo-tree',
-      'starter',
-      'TelescopePrompt',
-      'Trouble',
-      'NvimTree',
-      'NvimTree_1',
-      'dapui_watches',
-      'dap-repl',
-      'dapui_console',
-      'dapui_stacks',
-      'dapui_breakpoints',
-      'dapui_scopes',
-      'themes',
-      'terminal',
-      'diff',
-      'undotree',
-    }
-    --[[
-    if vim.tbl_contains(ft_ignore, vim.bo.buftype) then
-      vim.cmd 'setlocal statuscolumn='
-      vim.o.scrolloff = 0
-      vim.o.number = false
-      vim.o.relativenumber = false
-    end
-]]
-    if vim.tbl_contains(ft_ignore, vim.bo.filetype) then
-      vim.cmd 'setlocal statuscolumn='
-      vim.o.scrolloff = 0
-      vim.o.number = false
-      vim.o.relativenumber = false
-    end
-
     if vim.bo.buftype == 'terminal' then
+      vim.o.scrolloff = 0
+      vim.o.number = false
+      vim.o.relativenumber = false
       vim.cmd 'startinsert | 1'
     end
   end,

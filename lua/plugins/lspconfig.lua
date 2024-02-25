@@ -243,4 +243,33 @@ local M = { -- LSP Configuration & Plugins
   end,
 }
 
+local signs = {
+  Error = '',
+  Warn = '',
+  Hint = '',
+  Info = '',
+}
+
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config {
+  virtual_lines = false,
+  virtual_text = {
+    source = 'always',
+    prefix = '■',
+  },
+  -- virtual_text = false,
+  float = {
+    source = 'always',
+    border = 'rounded',
+  },
+  signs = true,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+}
+
 return M
