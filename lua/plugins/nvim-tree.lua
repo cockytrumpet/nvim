@@ -33,6 +33,7 @@ local M = {
       highlight_opened_files = 'icon',
       highlight_modified = 'none',
       highlight_bookmarks = 'all',
+      root_folder_label = false,
       icons = {
         show = {
           git = true,
@@ -41,9 +42,10 @@ local M = {
     },
     view = {
       side = 'left',
+      relativenumber = true,
       width = { min = 40, padding = 2 },
     },
-    hijack_unnamed_buffer_when_opening = true,
+    hijack_unnamed_buffer_when_opening = false,
     hijack_cursor = false,
     sync_root_with_cwd = true,
     tab = {
