@@ -14,7 +14,7 @@ local M = {
         hl['@symbol'] = { link = '@field' }
       end,
     }
-    everforest.load()
+    -- everforest.load()
   end,
 }
 
