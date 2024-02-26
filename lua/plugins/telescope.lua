@@ -72,6 +72,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
+    vim.keymap.set('n', '<leader>fb', '<CMD>Telescope file_browser<CR>', { desc = 'file browser' })
     vim.keymap.set('n', '<leader>fc', '<CMD>Telescope gpt<CR>', { desc = 'ChatGPT' })
     vim.keymap.set('n', '<leader>fg', '<CMD>Telescope git_status<CR>', { desc = 'git' })
     vim.keymap.set('n', '<leader>fm', function()
@@ -79,7 +80,6 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = 'message history' })
     vim.keymap.set('n', '<leader>ft', '<CMD>TodoTelescope<CR>', { desc = 'Todo' })
 
-    local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'diagnostics' })
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'files' })
     vim.keymap.set('n', '<leader>fl', builtin.live_grep, { desc = 'live grep' })

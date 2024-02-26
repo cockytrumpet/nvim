@@ -16,7 +16,7 @@ local M = {
       statusline_color = 'StatusLine',
       disabled = {
         filetypes = {
-          'NvimTree',
+          -- 'NvimTree',
           'lazy',
         },
         buftypes = {
