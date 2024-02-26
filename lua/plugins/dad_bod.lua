@@ -1,31 +1,30 @@
-local M =
-{
-  "tpope/vim-dadbod",
-  cmd = { "DBUI" },
+local M = {
+  'tpope/vim-dadbod',
+  cmd = { 'DBUI' },
   dependencies = {
-    "kristijanhusak/vim-dadbod-ui",
-    "kristijanhusak/vim-dadbod-completion",
+    'kristijanhusak/vim-dadbod-ui',
+    'kristijanhusak/vim-dadbod-completion',
   },
   opts = {
     db_completion = function()
-      require("cmp").setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
+      require('cmp').setup.buffer { sources = { { name = 'vim-dadbod-completion' } } }
     end,
   },
   config = function(_, opts)
-    vim.g.db_ui_save_location = vim.fn.stdpath("config") .. require("plenary.path").path.sep .. "db_ui"
+    vim.g.db_ui_save_location = vim.fn.stdpath 'config' .. require('plenary.path').path.sep .. 'db_ui'
 
-    vim.api.nvim_create_autocmd("FileType", {
+    vim.api.nvim_create_autocmd('FileType', {
       pattern = {
-        "sql",
+        'sql',
       },
       command = [[setlocal omnifunc=vim_dadbod_completion#omni]],
     })
 
-    vim.api.nvim_create_autocmd("FileType", {
+    vim.api.nvim_create_autocmd('FileType', {
       pattern = {
-        "sql",
-        "mysql",
-        "plsql",
+        'sql',
+        'mysql',
+        'plsql',
       },
       callback = function()
         vim.schedule(opts.db_completion)
@@ -33,10 +32,10 @@ local M =
     })
   end,
   keys = {
-    { "<leader>Dt", "<cmd>DBUIToggle<cr>", desc = "Toggle UI" },
-    { "<leader>Df", "<cmd>DBUIFindBuffer<cr>", desc = "Find Buffer" },
-    { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename Buffer" },
-    { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
+    { '<leader>Dt', '<cmd>DBUIToggle<cr>', desc = 'toggle UI' },
+    { '<leader>Df', '<cmd>DBUIFindBuffer<cr>', desc = 'find buffer' },
+    { '<leader>Dr', '<cmd>DBUIRenameBuffer<cr>', desc = 'rename buffer' },
+    { '<leader>Dq', '<cmd>DBUILastQueryInfo<cr>', desc = 'last query info' },
   },
 }
 

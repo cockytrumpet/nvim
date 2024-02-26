@@ -12,40 +12,40 @@ local M = { -- LSP Configuration & Plugins
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
         local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = '' .. desc })
         end
 
         -- Jump to the definition of the word under your cursor.
         --  To jump back, press <C-T>.
-        map('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
+        map('gd', require('telescope.builtin').lsp_definitions, 'goto definition')
 
         -- Find references for the word under your cursor.
-        map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+        map('gr', require('telescope.builtin').lsp_references, 'goto references')
 
         -- Jump to the implementation of the word under your cursor.
-        map('gI', require('telescope.builtin').lsp_implementations, '[g]oto [I]mplementation')
+        map('gI', require('telescope.builtin').lsp_implementations, 'goto implementation')
 
         -- Jump to the type of the word under your cursor.
-        map('<leader>gt', require('telescope.builtin').lsp_type_definitions, '[g]oto [t]ype definition')
+        -- map('<leader>gt', require('telescope.builtin').lsp_type_definitions, '[g]oto [t]ype definition')
 
         -- Fuzzy find all the symbols in your current document.
-        map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[d]ocument [s]ymbols')
+        map('<leader>fs', require('telescope.builtin').lsp_document_symbols, 'document symbols')
 
         -- Fuzzy find all the symbols in your current workspace
-        map('<leader>sW', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
+        map('<leader>fS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
 
         -- Rename the variable under your cursor
-        map('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
+        map('<leader>rn', vim.lsp.buf.rename, 'rename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         map('<leader>ca', function()
           vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
-        end, '[c]ode [a]ction')
+        end, 'code action')
 
         -- Show the signature of the function you're currently completing.
-        map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+        map('<C-k>', vim.lsp.buf.signature_help, 'signature documentation')
 
-        map('gD', vim.lsp.buf.declaration, '[g]oto [d]eclaration')
+        map('gD', vim.lsp.buf.declaration, 'goto declaration')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.

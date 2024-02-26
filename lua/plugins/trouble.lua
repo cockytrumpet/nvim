@@ -8,9 +8,9 @@ local M = {
       return
     end
 
-    vim.keymap.set('n', '<leader>tq', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
-    vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
-    vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme', silent = true })
+    vim.keymap.set('n', '<leader>tq', '<cmd>TroubleToggle quickfix<cr>', { desc = 'quickfix' })
+    vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 warnings' })
+    vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo', silent = true })
 
     trouble.setup {
       position = 'bottom', -- position of the list can be: bottom, top, left, right

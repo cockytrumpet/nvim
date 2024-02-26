@@ -8,7 +8,7 @@ local M = {
     end,
   },
   init = function()
-    vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle nvimtree' })
+    vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'toggle nvimtree' })
   end,
   opts = {
     git = {
