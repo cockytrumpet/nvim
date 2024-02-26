@@ -1,5 +1,6 @@
 local M = {
   'luukvbaal/statuscol.nvim',
+  branch = '0.10',
   config = function()
     local builtin = require 'statuscol.builtin'
     require('statuscol').setup {
@@ -38,6 +39,7 @@ local M = {
             colwidth = 2,
             auto = false,
             wrap = true,
+            foldclosed = true,
           },
           auto = false,
           click = 'v:lua.ScSa',
@@ -49,6 +51,7 @@ local M = {
             colwidth = 2,
             auto = false,
             wrap = true,
+            foldclosed = true,
           },
           click = 'v:lua.ScSa',
         },
