@@ -38,10 +38,12 @@ local M = { -- LSP Configuration & Plugins
         map('<leader>rn', vim.lsp.buf.rename, 'rename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
+        map('<leader>ca', vim.lsp.buf.code_action, 'code action')
+        --[[
         map('<leader>ca', function()
           vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
         end, 'code action')
-
+]]
         -- Show the signature of the function you're currently completing.
         map('<C-k>', vim.lsp.buf.signature_help, 'signature documentation')
 
