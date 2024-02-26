@@ -26,7 +26,8 @@ local M = {
       vim.wo.wrap = true
       vim.wo.number = true
       vim.wo.rnu = true
-    end)
+    end, { desc = 'Zen mode (vimdoc)' })
+
     vim.keymap.set('n', '<leader>zz', function()
       require('zen-mode').setup {
         window = {
@@ -51,7 +52,7 @@ local M = {
         },
       }
       require('zen-mode').toggle()
-    end)
+    end, { desc = 'Zen mode' })
   end,
 }
 
