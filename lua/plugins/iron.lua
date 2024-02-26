@@ -2,8 +2,8 @@ local M = {
   'Vigemus/iron.nvim',
   event = 'VeryLazy',
   keys = {
-    { '<leader>i', vim.cmd.IronRepl, desc = '󱠤 Toggle REPL' },
-    { '<leader>I', vim.cmd.IronRestart, desc = '󱠤 Restart REPL' },
+    { '<leader>rr', vim.cmd.IronRepl, desc = '󱠤 Toggle REPL' },
+    { '<leader>rR', vim.cmd.IronRestart, desc = '󱠤 Restart REPL' },
 
     -- these keymaps need no right-hand-side, since that is defined by the
     -- plugin config further below

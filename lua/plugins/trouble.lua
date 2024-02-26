@@ -2,21 +2,15 @@ local M = {
   'folke/trouble.nvim',
   event = 'VeryLazy',
   opts = function()
-    -- vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-    -- {silent = true, noremap = true}
-    -- )
-
-    -- vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>')
-
     local present, trouble = pcall(require, 'trouble')
 
     if not present then
       return
     end
 
-    vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
+    vim.keymap.set('n', '<leader>tq', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
     vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
-    vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
+    vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme', silent = true })
 
     trouble.setup {
       position = 'bottom', -- position of the list can be: bottom, top, left, right
@@ -52,7 +46,7 @@ local M = {
       },
       indent_lines = true, -- add an indent guide below the fold icons
       auto_open = false, -- automatically open the list when you have diagnostics
-      auto_close = false, -- automatically close the list when you have no diagnostics
+      auto_close = true, -- automatically close the list when you have no diagnostics
       auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
       auto_fold = false, -- automatically fold a file trouble list at creation
       auto_jump = { 'lsp_definitions' }, -- for the given modes, automatically jump if there is only a single result

@@ -37,13 +37,16 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diag
 vim.keymap.set('n', '<leader>rf', function()
   _G.run_code()
 end, { desc = 'run file' })
-vim.keymap.set('n', '<leader>fm', function()
+vim.keymap.set('n', '<leader>f', function()
   require('conform').format {
     lsp_fallback = true,
     async = false,
     timeout_ms = 4000,
   }
-end, { desc = 'Format file or range (in visual mode)' })
-vim.keymap.set('n', '<leader>h', function()
+end, { desc = 'Format file' })
+vim.keymap.set('n', '<leader>i', function()
   vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Inlay Hints' })
+
+-- [[ Plugin specific ]]
+vim.keymap.set('n', '<leader>gg', '<CMD>Neogit<CR>', { desc = 'Neogit' })
