@@ -46,8 +46,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'dapui_scopes',
     'themes',
     'terminal',
-    'diff',
-    'undotree',
   },
   callback = function()
     require('ufo').detach()
