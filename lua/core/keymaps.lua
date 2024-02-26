@@ -11,8 +11,8 @@ vim.keymap.set('n', '<leader>tn', '<CMD>$tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>tc', '<CMD>tabc<CR>', { desc = 'Close tab' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('n', '<leader>tv', '<CMD>vsplit term://zsh<CR>', { desc = 'Open terminal (vertical)' })
-vim.keymap.set('n', '<leader>th', '<CMD>split term://zsh<CR>', { desc = 'Open terminal (horizontal)' })
+-- vim.keymap.set('n', '<leader>tv', '<CMD>vsplit term://zsh<CR>', { desc = 'Open terminal (vertical)' })
+-- vim.keymap.set('n', '<leader>th', '<CMD>split term://zsh<CR>', { desc = 'Open terminal (horizontal)' })
 
 vim.keymap.set('i', '<C-Up>', '<CMD>m .-2<CR>==', { desc = '󰜸 Move line up' })
 vim.keymap.set('i', '<C-Down>', '<CMD>m .+1<CR>==', { desc = '󰜯 Move line down' })
