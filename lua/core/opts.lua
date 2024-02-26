@@ -38,7 +38,7 @@ vim.opt.ruler = false
 vim.opt.scrolloff = 8
 vim.opt.sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize'
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
-vim.opt.shortmess:append 'Ac' -- Disable asking when editing file with swapfile.
+vim.opt.shortmess:append 'IAc' -- Disable asking when editing file with swapfile.
 vim.opt.showmode = false
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns
 vim.opt.signcolumn = 'yes'
