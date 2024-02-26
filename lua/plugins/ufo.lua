@@ -7,6 +7,25 @@ local M = {
   },
   lazy = false,
   init = function()
+    vim.keymap.set('n', 'zR', function()
+      require('ufo').openAllFolds()
+    end, { desc = 'Open all folds' })
+    vim.keymap.set('n', 'zM', function()
+      require('ufo').closeAllFolds()
+    end, { desc = 'Close all folds' })
+    vim.keymap.set('n', 'zr', function()
+      require('ufo').openFoldsExceptKinds()
+    end, { desc = 'Open all folds except kinds' })
+    vim.keymap.set('n', 'zm', function()
+      require('ufo').closeFoldsWith()
+    end, { desc = 'Close all folds with' })
+    vim.keymap.set('n', 'K', function()
+      local winid = require('ufo').peekFoldedLinesUnderCursor()
+      if not winid then
+        vim.lsp.buf.hover()
+      end
+    end, { desc = 'Peek Definition' })
+
     vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
     vim.o.foldcolumn = '1' -- '0' is not bad
     vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value

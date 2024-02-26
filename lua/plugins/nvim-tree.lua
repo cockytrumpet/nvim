@@ -7,6 +7,9 @@ local M = {
       require('lsp-file-operations').setup()
     end,
   },
+  init = function()
+    vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle nvimtree' })
+  end,
   opts = {
     git = {
       enable = true,

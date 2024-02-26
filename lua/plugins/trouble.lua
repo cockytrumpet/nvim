@@ -14,6 +14,10 @@ local M = {
       return
     end
 
+    vim.keymap.set('n', '<leader>qf', '<cmd>TroubleToggle quickfix<cr>', { desc = 'Toggle quickfix' })
+    vim.keymap.set('n', '<leader>tw', '<CMD>TroubleToggle<CR>', { desc = '󰔫 Toggle warnings' })
+    vim.keymap.set('n', '<leader>td', '<CMD>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<CR>', { desc = ' Todo/Fix/Fixme' })
+
     trouble.setup {
       position = 'bottom', -- position of the list can be: bottom, top, left, right
       height = 10, -- height of the trouble list when position is top or bottom
