@@ -23,7 +23,8 @@ local M = {
     local bufferline = require 'bufferline'
     bufferline.setup {
       options = {
-        style_preset = bufferline.style_preset.minimal,
+        style_preset = bufferline.style_preset.minimal, -- default | minimal
+        -- separator_style = 'thick', -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         offsets = {
           {
             filetype = 'NvimTree',
@@ -34,7 +35,7 @@ local M = {
             text_align = 'left',
           },
         },
-        -- diagnostics = 'nvim_lsp',
+        diagnostics = 'nvim_lsp',
       },
     }
   end,
