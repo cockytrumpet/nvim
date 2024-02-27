@@ -4,7 +4,10 @@ vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'Noice dismiss'
 end)
 
-vim.keymap.set('n', '<leader>x', '<CMD>bd<CR>', { desc = 'close buffer' })
+vim.keymap.set('n', '<leader>x', function()
+  close_current_buffer_LV()
+end, { desc = 'close buffer' })
+
 vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'copy whole file' })
 vim.keymap.set('n', '<leader>tp', '<CMD>tabp<CR>', { desc = 'previous tab' })
 vim.keymap.set('n', '<leader>tn', '<CMD>$tabnew<CR>', { desc = 'new tab' })
