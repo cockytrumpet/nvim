@@ -1,6 +1,6 @@
 local M = {
   'nvim-neotest/neotest',
-  ft = { 'python', 'c', 'cpp', 'rust' },
+  ft = { 'python', 'c', 'cpp', 'rust', 'go' },
   dependencies = {
     'stevanmilic/neotest-scala',
     'antoinemadec/FixCursorHold.nvim',
