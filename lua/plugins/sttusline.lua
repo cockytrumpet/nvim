@@ -2,6 +2,7 @@
 local M = {
   'sontungexpt/sttusline',
   priority = 999,
+  enabled = false,
   lazy = false,
   branch = 'table_version',
   dependencies = {
