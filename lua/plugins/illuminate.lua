@@ -35,6 +35,7 @@ local M = {
       },
       under_cursor = true,
       max_file_lines = nil,
+      lsp = false,
     }
   end,
 }

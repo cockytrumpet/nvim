@@ -1,6 +1,7 @@
 local M = {
   'akinsho/bufferline.nvim',
   version = '*',
+  after = 'catppuccin',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VimEnter',
   config = function()
@@ -25,6 +26,9 @@ local M = {
       options = {
         style_preset = bufferline.style_preset.minimal, -- default | minimal
         -- separator_style = 'thick', -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+        highlights = function()
+          require('catppuccin.groups.integrations.bufferline').get()
+        end,
         offsets = {
           {
             filetype = 'NvimTree',
