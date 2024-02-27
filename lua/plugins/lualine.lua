@@ -8,6 +8,9 @@ local function diff_source()
     }
   end
 end
+local function empty()
+  return '%='
+end
 
 -- TODO: replace deprecated vim functions
 local function lsp()
@@ -36,13 +39,21 @@ local M = {
     require('lualine').setup {
       options = {
         theme = 'catppuccin',
+        section_separators = { '', '' },
+        component_separators = { '', '' },
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', { 'diff', source = diff_source } },
-        lualine_c = { 'filename' },
+        lualine_b = {
+          'branch',
+          {
+            'diff',
+            source = diff_source,
+            symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+          },
+        },
+        lualine_c = { 'filename', 'diagnostics' },
         lualine_x = {
-          'diagnostics',
           {
             'copilot',
             symbols = {
@@ -55,7 +66,7 @@ local M = {
                   unknown = ' ',
                 },
                 hl = {
-                  enabled = '#a6e3a1',
+                  enabled = '#94e2d5', -- #a6e3a1 for green
                   sleep = '#AEB7D0',
                   disabled = '#6272A4',
                   warning = '#fab387',
@@ -68,8 +79,8 @@ local M = {
             show_colors = true,
             show_loading = true,
           },
+          { lsp, color = { fg = '#89b4fa' } },
           'filetype',
-          { lsp },
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
