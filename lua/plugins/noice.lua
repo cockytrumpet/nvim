@@ -5,6 +5,20 @@ local M = {
   opts = {
     -- add any options here
   },
+  init = function()
+    vim.keymap.set('n', '<leader>tm', '<CMD>Noice last<CR>', { desc = 'Open last message' })
+    vim.keymap.set({ 'n', 'i', 's' }, '<c-d>', function()
+      if not require('noice.lsp').scroll(4) then
+        return '<c-d>'
+      end
+    end, { silent = true, expr = true })
+
+    vim.keymap.set({ 'n', 'i', 's' }, '<c-u>', function()
+      if not require('noice.lsp').scroll(-4) then
+        return '<c-u>'
+      end
+    end, { silent = true, expr = true })
+  end,
   dependencies = {
     'MunifTanjim/nui.nvim',
     {
@@ -15,16 +29,21 @@ local M = {
         end,
       },
     },
-    {
+    --[[ {
       'stevearc/dressing.nvim',
       opts = {},
-    },
+    }, ]]
   },
   config = function()
     require('noice').setup {
       cmdline = {
         enabled = true,
         view = 'cmdline_popup',
+        opts = {
+          win_options = {
+            winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
+          },
+        },
         format = {
           cmdline = { pattern = '^:', icon = '󰘳 ', lang = 'vim' },
           search_down = { kind = 'search', pattern = '^/', icon = '󰩊 ', lang = 'regex' },
@@ -39,6 +58,13 @@ local M = {
         backend = 'nui', -- backend to use to show regular cmdline completions
       },
       routes = {
+        -- shows '@recording' in a notification
+        --[[
+        {
+          view = 'notify',
+          filter = { event = 'msg_showmode' },
+        },
+]]
         {
           filter = {
             event = 'lsp',
@@ -153,6 +179,9 @@ local M = {
         },
         documentation = {
           opts = {
+            win_options = {
+              winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
+            },
             border = {
               padding = { 0, 0 },
             },
@@ -177,6 +206,9 @@ local M = {
           size = {
             width = 60,
             height = 'auto',
+          },
+          win_options = {
+            winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
           },
         },
         popupmenu = {
@@ -209,7 +241,7 @@ local M = {
       },
       presets = {
         bottom_search = true,
-        command_palette = true,
+        command_palette = false,
         lsp_doc_border = true,
         inc_rename = false,
         long_message_to_split = true,
