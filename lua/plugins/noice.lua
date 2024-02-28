@@ -29,10 +29,6 @@ local M = {
         end,
       },
     },
-    --[[ {
-      'stevearc/dressing.nvim',
-      opts = {},
-    }, ]]
   },
   config = function()
     require('noice').setup {
@@ -41,7 +37,7 @@ local M = {
         view = 'cmdline_popup',
         opts = {
           win_options = {
-            winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
           },
         },
         format = {
@@ -180,7 +176,7 @@ local M = {
         documentation = {
           opts = {
             win_options = {
-              winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
+              winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
             },
             border = {
               padding = { 0, 0 },
@@ -208,7 +204,7 @@ local M = {
             height = 'auto',
           },
           win_options = {
-            winhighlight = 'Normal:Normal,FloatBorder:DiagnosticInfo',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
           },
         },
         popupmenu = {
@@ -227,8 +223,9 @@ local M = {
             padding = { 0, 1 },
           },
           win_options = {
-            winhighlight = { Normal = 'Normal', FloatBorder = 'DiagnosticInfo' },
+            winhighlight = { Normal = 'Normal', FloatBorder = 'FloatBorder' },
           },
+          scrollbar = false,
         },
         mini = {
           zindex = 100,

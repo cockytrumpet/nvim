@@ -61,10 +61,10 @@ local M = { -- Autocompletion
         completion = {
           scrolloff = 0,
           col_offset = 0,
-          scrollbar = true,
+          scrollbar = false,
           bordered = true,
           border = 'rounded',
-          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo',
+          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
         },
         documentation = {
           scrolloff = 0,
@@ -72,7 +72,7 @@ local M = { -- Autocompletion
           scrollbar = false,
           bordered = true,
           border = 'rounded',
-          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:DiagnosticInfo',
+          winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
         },
       },
       completion = {
