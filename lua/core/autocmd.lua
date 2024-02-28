@@ -53,6 +53,19 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- turn scroll off in these
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'noice', 'neotest-output', 'neotest-summary', 'neotest-output-panel' },
+  callback = function()
+    if vim.bo.buftype == 'terminal' then
+      vim.o.scrolloff = 0
+      vim.o.number = false
+      vim.o.relativenumber = false
+      vim.cmd 'startinsert | 1'
+    end
+  end,
+})
+
 -- Enable status column in the following files
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   callback = function()
