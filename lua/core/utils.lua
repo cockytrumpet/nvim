@@ -33,7 +33,8 @@ function _G.close_current_buffer(force, ignore_list)
   local fnamemodify = vim.fn.fnamemodify
   local bufnr = api.nvim_get_current_buf()
   local bufname = api.nvim_buf_get_name(bufnr)
-  local buf_type = api.nvim_buf_get_option(0, 'buftype')
+  -- local buf_type = api.nvim_buf_get_option(0, 'buftype')
+  local buf_type = api.nvim_get_option_value('buftype', { buf = bufnr })
 
   -- Check if the current buffer should be ignored.
   for _, type in ipairs(ignore_list) do
@@ -124,6 +125,7 @@ local function substitute(cmd)
   cmd = cmd:gsub('$filePath', vim.fn.expand '%:p')
   cmd = cmd:gsub('$file', vim.fn.expand '%')
   cmd = cmd:gsub('$dir', vim.fn.expand '%:p:h')
+  ---@diagnostic disable-next-line: param-type-mismatch
   cmd = cmd:gsub('$moduleName', vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.expand '%:r', ':~:.'), '/', '.', 'g'), '\\', '.', 'g'))
   cmd = cmd:gsub('#', vim.fn.expand '#')
   cmd = cmd:gsub('$altFile', vim.fn.expand '#')
@@ -279,7 +281,8 @@ local attach_to_buffer = function(bufnr, command)
           title = test.nodeid,
           on_open = function(win)
             local buf = vim.api.nvim_win_get_buf(win)
-            vim.api.nvim_buf_set_option(buf, 'filetype', 'python')
+            -- vim.api.nvim_buf_set_option(buf, 'filetype', 'python')
+            vim.api.nvim_set_option_value('filetype', 'python', { buf = buf })
           end,
         })
       end
