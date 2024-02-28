@@ -1,5 +1,15 @@
+vim.api.nvim_create_user_command('Update', function()
+  local commands = {
+    'MasonUpdate',
+    'MasonToolsUpdate',
+  }
+  for _, command in pairs(commands) do
+    vim.cmd(command)
+  end
+  require('lazy').sync()
+end, {})
+
 -- Common kill function for bdelete and bwipeout.
--- credits: based on bbye, nvim-bufdel and LunarVim.
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
 function _G.close_current_buffer_LV(force, ignore_list)
