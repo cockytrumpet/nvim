@@ -12,7 +12,7 @@ end, {})
 -- Common kill function for bdelete and bwipeout.
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
-function _G.close_current_buffer_LV(force, ignore_list)
+function _G.close_current_buffer(force, ignore_list)
   -- Command used to kill the buffer.
   local kill_command = 'bd'
 
@@ -107,7 +107,7 @@ function _G.close_current_buffer_LV(force, ignore_list)
   -- If there was only one buffer (which had to be the current one), vim will
   -- create a new buffer (and keep a window open) on :bd.
 end
-
+--[[
 local function file_exists(name)
   local f = io.open(name, 'r')
   if f ~= nil then
@@ -117,7 +117,7 @@ local function file_exists(name)
     return false
   end
 end
-
+]]
 local function substitute(cmd)
   cmd = cmd:gsub('%%', vim.fn.expand '%')
   cmd = cmd:gsub('$fileBase', vim.fn.expand '%:r')

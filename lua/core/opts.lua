@@ -11,8 +11,8 @@ vim.opt.cursorline = false
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '', lastline = ' ' } -- make EndOfBuffer invisible
-vim.opt.foldcolumn = '0'
-vim.opt.foldenable = false
+vim.opt.foldcolumn = '1'
+vim.opt.foldenable = true
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99

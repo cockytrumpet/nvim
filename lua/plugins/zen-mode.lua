@@ -7,9 +7,9 @@ local M = {
         signcolumn = 'yes', -- disable signcolumn
         number = true, -- disable number column
         relativenumber = true, -- disable relative numbers
-        cursorline = false, -- disable cursorline
+        cursorline = true, -- disable cursorline
         cursorcolumn = false, -- disable cursor column
-        foldcolumn = 'auto', -- disable fold column
+        foldcolumn = '1', -- disable fold column
         list = false, -- disable whitespace characters
       },
     },
@@ -17,6 +17,9 @@ local M = {
   config = function()
     vim.keymap.set('n', '<leader>zZ', function()
       require('zen-mode').setup {
+        -- on_open = function(win)
+        --   win.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+        -- end,
         window = {
           width = 90,
           options = {},
@@ -30,6 +33,9 @@ local M = {
 
     vim.keymap.set('n', '<leader>zz', function()
       require('zen-mode').setup {
+        -- on_open = function(win)
+        --   win.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+        -- end,
         window = {
           backdrop = 0.93,
           width = 100,

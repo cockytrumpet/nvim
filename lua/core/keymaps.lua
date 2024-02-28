@@ -5,7 +5,7 @@ vim.keymap.set('n', '<Esc>', function()
 end)
 
 vim.keymap.set('n', '<leader>x', function()
-  close_current_buffer_LV()
+  close_current_buffer()
 end, { desc = 'close buffer' })
 
 vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'copy whole file' })
