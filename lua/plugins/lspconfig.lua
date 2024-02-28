@@ -1,3 +1,32 @@
+local signs = {
+  Error = '',
+  Warn = '',
+  Hint = '',
+  Info = '',
+}
+
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config {
+  virtual_lines = false,
+  virtual_text = {
+    source = 'always',
+    prefix = '■',
+  },
+  -- virtual_text = false,
+  float = {
+    source = 'always',
+    border = 'rounded',
+  },
+  signs = true,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = true,
+}
+
 local M = { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -5,6 +34,7 @@ local M = { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'folke/neodev.nvim',
     { 'j-hui/fidget.nvim', event = 'VeryLazy', opts = {} },
   },
   config = function()
@@ -224,6 +254,7 @@ local M = { -- LSP Configuration & Plugins
     })
 
     -- Ensure the servers and tools above are installed
+    require('neodev').setup()
     require('mason').setup()
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
     require('mason-lspconfig').setup {
@@ -243,35 +274,6 @@ local M = { -- LSP Configuration & Plugins
       },
     }
   end,
-}
-
-local signs = {
-  Error = '',
-  Warn = '',
-  Hint = '',
-  Info = '',
-}
-
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.diagnostic.config {
-  virtual_lines = false,
-  virtual_text = {
-    source = 'always',
-    prefix = '■',
-  },
-  -- virtual_text = false,
-  float = {
-    source = 'always',
-    border = 'rounded',
-  },
-  signs = true,
-  underline = false,
-  update_in_insert = false,
-  severity_sort = true,
 }
 
 return M
