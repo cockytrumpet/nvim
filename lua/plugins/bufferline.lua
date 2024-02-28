@@ -1,7 +1,6 @@
 local M = {
   'akinsho/bufferline.nvim',
   version = '*',
-  after = 'catppuccin',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VimEnter',
   config = function()
