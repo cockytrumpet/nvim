@@ -20,8 +20,13 @@ return {
     },
     scope = {
       -- Rely on treesitter, bad performance
-      enabled = false,
-      -- highlight = highlight,
+      enabled = true,
+      highlight = highlight,
+      include = {
+        node_type = {
+          lua = { 'return_statement', 'table_constructor' },
+        },
+      },
     },
   },
   config = function(_, opts)
@@ -30,7 +35,7 @@ return {
 
     ibl.setup(opts)
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-
+    --[[
     -- Hide first level indent, using `foldsep` to show it
     hooks.register(hooks.type.VIRTUAL_TEXT, function(_, _, _, virt_text)
       if virt_text[1] and virt_text[1][1] == opts.indent.char then
@@ -38,5 +43,6 @@ return {
       end
       return virt_text
     end)
+    -- ]]
   end,
 }
