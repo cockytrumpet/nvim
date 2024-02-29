@@ -1,6 +1,7 @@
 local M = {
   'RRethy/vim-illuminate',
   event = { 'CursorHold', 'CursorHoldI' },
+  enabled = false,
   config = function()
     local status, illuminate = pcall(require, 'illuminate')
 

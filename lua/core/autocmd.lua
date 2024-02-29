@@ -1,18 +1,3 @@
---[[
-local client = vim.lsp.get_client_by_id(event.data.client_id)
-if client and client.server_capabilities.documentHighlightProvider then
-  vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-    buffer = event.buf,
-    callback = vim.lsp.buf.document_highlight,
-  })
-
-  vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-    buffer = event.buf,
-    callback = vim.lsp.buf.clear_references,
-  })
-end
-]]
-
 -- Highlight when yanking (copying) text
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -22,6 +7,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- turn off cursorline when entering buffer
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  callback = function()
+    vim.opt.cursorline = true
+  end,
+})
+
+-- turn on cursorline when leaving buffers
+vim.api.nvim_create_autocmd('BufLeave', {
+  pattern = '*',
+  callback = function()
+    vim.opt.cursorline = false
+    vim.lsp.buf.clear_references()
+  end,
+})
+
+-- turn off ufo in these
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {
     'neotest-summary',
@@ -66,7 +69,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Enable status column in the following files
+-- turn off in terminal
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   callback = function()
     if vim.bo.buftype == 'terminal' then
@@ -78,6 +81,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNew' }, {
   end,
 })
 
+-- wrap in these filetypes
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'gitcommit', 'markdown', 'text', 'log', 'help', 'noice' },
   callback = function()
