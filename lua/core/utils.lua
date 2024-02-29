@@ -9,7 +9,6 @@ vim.api.nvim_create_user_command('Update', function()
   require('lazy').sync()
 end, {})
 
--- Common kill function for bdelete and bwipeout.
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
 function _G.close_current_buffer(force, ignore_list)
