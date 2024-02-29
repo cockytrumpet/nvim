@@ -55,8 +55,10 @@ vim.opt.undodir = os.getenv 'HOME' .. '/.undodir' -- set an undo directory
 vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.whichwrap:append '<,>,[,],h,l'
+vim.opt.winhighlight = 'WinSeparator:FloatBorder'
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
+
 vim.cmd 'set rtp+=/opt/homebrew/opt/fzf'
 
 if vim.fn.has 'nvim-0.10' == 1 then
