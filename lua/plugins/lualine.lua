@@ -36,7 +36,10 @@ local function lsp()
   local formatters = require('conform').list_formatters_for_buffer()
   if next(formatters) ~= nil then
     for _, linter in ipairs(formatters) do
-      msg = msg .. ', ' .. linter
+      if msg ~= '' then
+        msg = msg .. ', '
+      end
+      msg = msg .. linter
     end
   end
   return msg
