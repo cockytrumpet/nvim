@@ -3,6 +3,7 @@ local M = {
   dependencies = 'nvim-treesitter/nvim-treesitter',
   event = 'BufRead',
   config = function()
+    ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
       textobjects = {
         select = {
