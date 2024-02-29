@@ -75,7 +75,7 @@ local M = { -- LSP Configuration & Plugins
         end, 'code action')
 ]]
         -- Show the signature of the function you're currently completing.
-        map('<C-k>', vim.lsp.buf.signature_help, 'signature documentation')
+        map('<leader>K', vim.lsp.buf.signature_help, 'signature documentation')
 
         map('gD', vim.lsp.buf.declaration, 'goto declaration')
 

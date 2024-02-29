@@ -2,13 +2,13 @@ local M = {
   'Vigemus/iron.nvim',
   event = 'VeryLazy',
   keys = {
-    { '<leader>rr', vim.cmd.IronRepl, desc = '󱠤 Toggle REPL' },
-    { '<leader>rR', vim.cmd.IronRestart, desc = '󱠤 Restart REPL' },
+    { '<leader>rr', vim.cmd.IronRepl, desc = '󱠤 toggle REPL' },
+    { '<leader>rR', vim.cmd.IronRestart, desc = '󱠤 restart REPL' },
 
     -- these keymaps need no right-hand-side, since that is defined by the
     -- plugin config further below
-    { '+', mode = { 'n', 'x' }, desc = '󱠤 Send-to-REPL Operator' },
-    { '++', desc = '󱠤 Send Line to REPL' },
+    { '+', mode = { 'n', 'x' }, desc = '󱠤 send-to-REPL Operator' },
+    { '++', desc = '󱠤 send line to REPL' },
   },
 
   -- since irons's setup call is `require("iron.core").setup`, instead of

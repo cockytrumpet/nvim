@@ -29,7 +29,7 @@ local M = { -- Adds git related signs to the gutter, as well as utilities for ma
           gs.next_hunk()
         end)
         return '<Ignore>'
-      end, { expr = true })
+      end, { desc = 'next hunk', expr = true })
 
       map('n', '[c', function()
         if vim.wo.diff then
@@ -39,7 +39,7 @@ local M = { -- Adds git related signs to the gutter, as well as utilities for ma
           gs.prev_hunk()
         end)
         return '<Ignore>'
-      end, { expr = true })
+      end, { desc = 'previous hunk', expr = true })
 
       -- Actions
       map('n', '<leader>gs', gs.stage_hunk, { desc = 'stage hunk' })
@@ -56,7 +56,7 @@ local M = { -- Adds git related signs to the gutter, as well as utilities for ma
       map('n', '<leader>gp', gs.preview_hunk, { desc = 'preview hunk' })
       map('n', '<leader>gb', function()
         gs.blame_line { full = true }
-      end, { desc = 'Blame line' })
+      end, { desc = 'blame line' })
       map('n', '<leader>gt', gs.toggle_current_line_blame, { desc = 'blame line toggle' })
       map('n', '<leader>gd', gs.diffthis, { desc = 'diff' })
       map('n', '<leader>gD', function()

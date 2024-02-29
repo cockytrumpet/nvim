@@ -108,20 +108,20 @@ local M = {
     }
     vim.keymap.set({ 'n', 't' }, '<leader>th', function()
       terminal.toggle 'horizontal'
-    end, { desc = 'NVTerm: horizontal ' })
+    end, { desc = 'horizontal terminal' })
     vim.keymap.set({ 'n', 't' }, '<leader>tv', function()
       terminal.toggle 'vertical'
-    end, { desc = 'NVTerm: vertical ' })
+    end, { desc = 'vertical terminal' })
     vim.keymap.set({ 'n', 't' }, '<leader>ti', function()
       terminal.toggle 'float'
-    end, { desc = 'NVTerm: float ' })
+    end, { desc = 'float terminal' })
     vim.keymap.set('n', '<leader>tr', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
         terminal.send('clear &&' .. cmd)
       end
-    end, { desc = 'NVTerm: run file' })
+    end, { desc = 'run file' })
   end,
   config = function()
     require('nvterm').setup {
