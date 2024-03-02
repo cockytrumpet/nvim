@@ -18,14 +18,14 @@ end
 local function lsp()
   -- LSPs
   local msg = ''
-  local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
-  local clients = vim.lsp.get_clients()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients { bufnr = bufnr }
+  local excluded_lsps = { 'copilot' }
   if next(clients) == nil then
     return msg
   end
   for _, client in ipairs(clients) do
-    local filetypes = client.config.filetypes
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+    if not vim.tbl_contains(excluded_lsps, client.name) then
       if msg ~= '' then
         msg = msg .. ', '
       end
@@ -42,6 +42,7 @@ local function lsp()
       msg = msg .. linter
     end
   end
+  -- msg = "' " .. msg
   return msg
 end
 
