@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-doc-name, assign-type-mismatch
 local M = {
   'kawre/leetcode.nvim',
+  enabled = false,
   build = ':TSUpdate html',
   dependencies = {
     'nvim-telescope/telescope.nvim',
