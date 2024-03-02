@@ -11,10 +11,6 @@ local function diff_source()
   end
 end
 
-local function empty()
-  return '%='
-end
-
 local function lsp()
   local msg = ''
   local bufnr = vim.api.nvim_get_current_buf()
@@ -76,26 +72,13 @@ local M = {
         lualine_c = {
           'filename',
           'diagnostics',
-          { empty },
-          --[[ {
-            require('noice').api.status.message.get_hl,
-            cond = require('noice').api.status.message.has,
-          }, ]]
-          --[[ {
-            require('noice').api.status.command.get,
-            cond = require('noice').api.status.command.has,
-            color = { fg = '#ff9e64' },
-          }, ]]
+          '%=',
           {
             require('noice').api.status.mode.get,
             cond = require('noice').api.status.mode.has,
             color = { fg = '#ff9e64' },
           },
-          --[[ {
-            require('noice').api.status.search.get,
-            cond = require('noice').api.status.search.has,
-            color = { fg = '#ff9e64' },
-          }, ]]
+          '%=',
         },
         lualine_x = {
           {
@@ -110,7 +93,7 @@ local M = {
                   unknown = ' ',
                 },
                 hl = {
-                  enabled = '#94e2d5', -- #a6e3a1 for green
+                  enabled = '#94e2d5',
                   sleep = '#AEB7D0',
                   disabled = '#6272A4',
                   warning = '#fab387',
