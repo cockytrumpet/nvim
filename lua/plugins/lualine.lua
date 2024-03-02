@@ -16,11 +16,13 @@ local function empty()
 end
 
 local function lsp()
-  -- LSPs
   local msg = ''
   local bufnr = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients { bufnr = bufnr }
   local excluded_lsps = { 'copilot' }
+  local excluded_formatters = {}
+
+  -- LSPs
   if next(clients) == nil then
     return msg
   end
@@ -35,13 +37,16 @@ local function lsp()
   -- Formatters
   local formatters = require('conform').list_formatters_for_buffer()
   if next(formatters) ~= nil then
-    for _, linter in ipairs(formatters) do
-      if msg ~= '' then
-        msg = msg .. ', '
+    for _, formatter in ipairs(formatters) do
+      if not vim.tbl_contains(excluded_formatters, formatter) then
+        if msg ~= '' then
+          msg = msg .. ', '
+        end
+        msg = msg .. formatter
       end
-      msg = msg .. linter
     end
   end
+
   -- msg = "' " .. msg
   return msg
 end
