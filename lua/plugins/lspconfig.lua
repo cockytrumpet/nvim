@@ -256,7 +256,7 @@ local M = { -- LSP Configuration & Plugins
 
     -- Ensure the servers and tools above are installed
     require('neodev').setup()
-    require('mason').setup()
+    require('mason').setup { ui = { border = 'rounded' } }
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
     require('mason-lspconfig').setup {
       handlers = {
