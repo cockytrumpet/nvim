@@ -24,7 +24,7 @@ local M = { -- theme
       styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = { 'italic' }, -- Change the style of comments
         conditionals = { 'italic' },
-        loops = {},
+        loops = { 'italic' },
         functions = {},
         keywords = {},
         strings = {},
@@ -53,10 +53,10 @@ local M = { -- theme
         native_lsp = {
           enabled = true,
           underlines = {
-            errors = { 'undercurl' },
-            hints = { 'undercurl' },
-            warnings = { 'undercurl' },
-            information = { 'undercurl' },
+            errors = { 'underdotted' },
+            hints = { 'underdotted' },
+            warnings = { 'underdotted' },
+            information = { 'underdotted' },
           },
         },
         neogit = true,

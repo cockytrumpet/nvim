@@ -103,7 +103,7 @@ local M = {
               -- Edit
               { find = '%d+ less lines' },
               { find = '%d+ fewer lines' },
-              { find = '%d+ more lines' },
+              { find = '%d+ more line' },
               { find = '%d+ change;' },
               { find = '%d+ line less;' },
               { find = '%d+ more lines?;' },
@@ -119,8 +119,10 @@ local M = {
               -- Redo/Undo
               { find = ' changes; before #' },
               { find = ' changes; after #' },
-              { find = ' change; before #' },
-              { find = ' change; after #' },
+              { find = '1 change; before #' },
+              { find = '1 change; after #' },
+              { find = ' change; before ' },
+              { find = ' change; after ' },
 
               -- Yank
               { find = ' lines yanked' },

@@ -17,8 +17,8 @@ local M = {
       show_on_open_dirs = false,
     },
     diagnostics = {
-      enable = false,
-      show_on_dirs = false,
+      enable = true,
+      show_on_dirs = true,
       show_on_open_dirs = false,
     },
     modified = {
@@ -28,8 +28,8 @@ local M = {
     },
     filters = { custom = { '^.git$' } },
     renderer = {
-      highlight_git = true,
-      highlight_diagnostics = true,
+      highlight_git = 'name',
+      highlight_diagnostics = 'none',
       highlight_opened_files = 'icon',
       highlight_modified = 'none',
       highlight_bookmarks = 'all',
