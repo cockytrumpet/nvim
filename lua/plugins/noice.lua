@@ -119,8 +119,8 @@ local M = {
               -- Redo/Undo
               { find = ' changes; before #' },
               { find = ' changes; after #' },
-              { find = '1 change; before #' },
-              { find = '1 change; after #' },
+              { find = ' change; before #' },
+              { find = ' change; after #' },
 
               -- Yank
               { find = ' lines yanked' },
