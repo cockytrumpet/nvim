@@ -4,6 +4,7 @@ local function substitute(cmd)
   cmd = cmd:gsub('$filePath', vim.fn.expand '%:p')
   cmd = cmd:gsub('$file', vim.fn.expand '%')
   cmd = cmd:gsub('$dir', vim.fn.expand '%:p:h')
+  ---@diagnostic disable-next-line: param-type-mismatch
   cmd = cmd:gsub('$moduleName', vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.expand '%:r', ':~:.'), '/', '.', 'g'), '\\', '.', 'g'))
   cmd = cmd:gsub('#', vim.fn.expand '#')
   cmd = cmd:gsub('$altFile', vim.fn.expand '#')
@@ -112,14 +113,28 @@ local M = {
     vim.keymap.set({ 'n', 't' }, '<leader>tv', function()
       terminal.toggle 'vertical'
     end, { desc = 'vertical terminal' })
-    vim.keymap.set({ 'n', 't' }, '<leader>ti', function()
+    vim.keymap.set({ 'n', 't' }, '<leader>tf', function()
       terminal.toggle 'float'
     end, { desc = 'float terminal' })
-    vim.keymap.set('n', '<leader>tr', function()
+    vim.keymap.set('n', '<leader>trh', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
-        terminal.send('clear &&' .. cmd)
+        terminal.send('clear &&' .. cmd, 'horizontal')
+      end
+    end, { desc = 'run file' })
+    vim.keymap.set('n', '<leader>trv', function()
+      -- terminal.send(ft_cmds[vim.bo.filetype])
+      local cmd = get_command()
+      if cmd then
+        terminal.send('clear &&' .. cmd, 'vertical')
+      end
+    end, { desc = 'run file' })
+    vim.keymap.set('n', '<leader>trf', function()
+      -- terminal.send(ft_cmds[vim.bo.filetype])
+      local cmd = get_command()
+      if cmd then
+        terminal.send('clear &&' .. cmd, 'float')
       end
     end, { desc = 'run file' })
   end,
