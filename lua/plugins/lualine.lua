@@ -10,7 +10,13 @@ local function diff_source()
     }
   end
 end
-
+--[[
+-- FIXME: This is a temporary function to test diagnostics
+local function make_some_errors()
+  vim.api.nvim_win_get_option(0, 'number')
+  1/0
+end
+]]
 local function lsp()
   local msg = ''
   local bufnr = vim.api.nvim_get_current_buf()
@@ -58,6 +64,7 @@ local M = {
         theme = 'catppuccin',
         section_separators = { '', '' },
         component_separators = { '', '' },
+        always_divide_middle = false,
       },
       sections = {
         lualine_a = { 'mode' },
@@ -78,7 +85,6 @@ local M = {
             cond = require('noice').api.status.mode.has,
             color = { fg = '#ff9e64' },
           },
-          '%=',
         },
         lualine_x = {
           {
