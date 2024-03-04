@@ -1,6 +1,6 @@
 local M = {
   'Wansmer/treesj',
-  event = 'BufWinEnter',
+  event = 'VeryLazy',
   config = function()
     vim.keymap.set('n', '<leader>j', '<CMD>TSJToggle<CR>', { desc = 'split/join' })
     require('treesj').setup {

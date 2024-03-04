@@ -1,10 +1,11 @@
 local M = {
   'David-Kunz/gen.nvim',
+  cmd = 'Gen',
   opts = {
-    model = 'mistral', -- The default model to use.
+    model = 'starcoder2:7b', -- The default model to use.
     host = 'localhost', -- The host running the Ollama service.
     port = '11434', -- The port on which the Ollama service is listening.
-    display_mode = 'float', -- The display mode. Can be "float" or "split".
+    display_mode = 'split', -- The display mode. Can be "float" or "split".
     show_prompt = false, -- Shows the Prompt submitted to Ollama.
     show_model = false, -- Displays which model you are using at the beginning of your chat session.
     no_auto_close = false, -- Never closes the window automatically.

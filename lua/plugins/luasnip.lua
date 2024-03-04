@@ -1,5 +1,6 @@
 local M = {
   'L3MON4D3/LuaSnip',
+  event = 'InsertEnter',
   opts = function(opts)
     require('luasnip').config.set_config(opts)
 

@@ -1,7 +1,7 @@
 local M = {
   'folke/tokyonight.nvim',
-  lazy = false,
-  priority = 1000,
+  event = 'VeryLazy',
+  -- priority = 1000,
   opts = {},
 }
 

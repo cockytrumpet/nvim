@@ -1,6 +1,6 @@
 local M = {
   'christoomey/vim-tmux-navigator',
-  event = 'VimEnter',
+  event = 'VeryLazy',
   config = function()
     vim.keymap.set('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>', { desc = 'focus left window' })
     vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>', { desc = 'focus right window' })

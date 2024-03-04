@@ -1,6 +1,6 @@
 local M = {
   'nvim-treesitter/nvim-treesitter-context',
-  event = 'BufWinEnter',
+  event = 'VeryLazy',
   init = function()
     vim.keymap.set('n', '[u', function()
       require('treesitter-context').go_to_context(vim.v.count1)

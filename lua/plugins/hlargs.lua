@@ -1,6 +1,6 @@
 local M = {
   'm-demare/hlargs.nvim',
-  event = 'BufWinEnter',
+  event = 'VeryLazy',
   config = function()
     require('hlargs').setup {
       hl_priority = 200,

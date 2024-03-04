@@ -2,7 +2,7 @@ local M = {
   'akinsho/bufferline.nvim',
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
-  event = 'VimEnter',
+  event = 'VeryLazy',
   config = function()
     vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>', { noremap = true, silent = true, desc = 'cycle next' })
     vim.keymap.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true, desc = 'cycle prev' })
