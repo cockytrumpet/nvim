@@ -1,5 +1,6 @@
 -- [[ Setting options ]]
 -- See `:help vim.opt`
+vim.g.lua_snippets_path = os.getenv 'HOME' .. '/.config/nvim/lua/snippets'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
