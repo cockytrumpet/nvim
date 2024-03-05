@@ -1,8 +1,35 @@
 local M = {
   'L3MON4D3/LuaSnip',
+  dependencies = { 'rafamadriz/friendly-snippets' },
   event = 'InsertEnter',
-  opts = function(opts)
-    require('luasnip').config.set_config(opts)
+  opts = function()
+    local types = require 'luasnip.util.types'
+    local ls = require 'luasnip'
+
+    require('luasnip').config.set_config {
+      enable_autosnippets = true,
+      history = true,
+      updateevents = 'TextChanged,TextChangedI',
+      snip_env = {
+        s = function(...)
+          local snip = ls.s(...)
+          -- we can't just access the global `ls_file_snippets`, since it will be
+          -- resolved in the environment of the scope in which it was defined.
+          table.insert(getfenv(2).ls_file_snippets, snip)
+        end,
+        parse = function(...)
+          local snip = ls.parser.parse_snippet(...)
+          table.insert(getfenv(2).ls_file_snippets, snip)
+        end,
+      },
+      ext_opts = {
+        [types.choiceNode] = {
+          active = {
+            virt_text = { { '<-', 'Error' } },
+          },
+        },
+      },
+    }
 
     -- vscode format
     require('luasnip.loaders.from_vscode').lazy_load()
@@ -13,6 +40,7 @@ local M = {
     require('luasnip.loaders.from_snipmate').lazy_load { paths = vim.g.snipmate_snippets_path or '' }
 
     -- lua format
+    -- require('luasnip.loaders.from_lua').load()
     require('luasnip.loaders.from_lua').load()
     require('luasnip.loaders.from_lua').lazy_load { paths = vim.g.lua_snippets_path or '' }
 
@@ -23,14 +51,22 @@ local M = {
         end
       end,
     })
+
+    vim.keymap.set('n', '<leader>rs', function()
+      local paths = vim.split(vim.fn.glob '~/.config/nvim/lua/snippets/*lua', '\n')
+      for _, file in pairs(paths) do
+        vim.notify('Reloading ' .. file, 'info', { title = 'LuaSnip' })
+        vim.cmd('source ' .. file)
+      end
+    end, { desc = 'Reload Snippets' })
   end,
-  build = (function()
+  build = function()
     -- Build Step is needed for regex support in snippets
-    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+    if vim.fn.executable 'make' == 0 then
       return
     end
     return 'make install_jsregexp'
-  end)(),
+  end,
 }
 
 return M

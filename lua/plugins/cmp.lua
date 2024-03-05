@@ -54,7 +54,7 @@ local M = { -- Autocompletion
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
-    luasnip.config.setup {}
+    -- luasnip.config.setup {}
 
     cmp.setup {
       window = {
@@ -78,7 +78,7 @@ local M = { -- Autocompletion
       completion = {
         completeopt = 'menu,menuone,noinsert,noselect',
         autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
-        keyword_length = 2,
+        keyword_length = 1,
       },
       experimental = {
         --[[
@@ -128,6 +128,11 @@ local M = { -- Autocompletion
             luasnip.jump(-1)
           end
         end, { 'i', 's' }),
+        ['<C-k>'] = cmp.mapping(function()
+          if luasnip.choice_active() then
+            luasnip.change_choice(1)
+          end
+        end, { 'i', 's' }),
       },
       sources = {
         { name = 'nvim_lsp' },
@@ -139,6 +144,7 @@ local M = { -- Autocompletion
       },
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },
+        expandable_indicator = true,
         format = function(entry, vim_item)
           local lspkind_ok, lspkind = pcall(require, 'lspkind')
           if not lspkind_ok then
