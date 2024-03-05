@@ -9,6 +9,18 @@ vim.api.nvim_create_user_command('Update', function()
   require('lazy').sync()
 end, {})
 
+vim.api.nvim_create_user_command('UpdateAll', function()
+  local commands = {
+    'MasonUpdate',
+    'MasonToolsUpdate',
+  }
+  for _, command in pairs(commands) do
+    vim.cmd(command)
+  end
+  require('lazy').sync()
+  require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'horizontal')
+end, {})
+
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
 function _G.close_current_buffer(force, ignore_list)
