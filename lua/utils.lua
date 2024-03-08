@@ -1,3 +1,4 @@
+--[[
 vim.api.nvim_create_user_command('Update', function()
   local commands = {
     'MasonUpdate',
@@ -8,8 +9,8 @@ vim.api.nvim_create_user_command('Update', function()
   end
   require('lazy').sync()
 end, {})
-
-vim.api.nvim_create_user_command('UpdateAll', function()
+]]
+vim.api.nvim_create_user_command('Update', function()
   local commands = {
     'MasonUpdate',
     'MasonToolsUpdate',
@@ -18,7 +19,7 @@ vim.api.nvim_create_user_command('UpdateAll', function()
     vim.cmd(command)
   end
   require('lazy').sync()
-  require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'horizontal')
+  require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
 end, {})
 
 ---@param force? boolean defaults to false.
