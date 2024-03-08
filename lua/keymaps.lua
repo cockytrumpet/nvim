@@ -26,6 +26,11 @@ vim.keymap.set('n', '<down>', '<CMD>resize +1<CR>', { desc = 'horizontal -' })
 
 vim.keymap.set('n', 'gw', '<CMD>silent grep! <cword> | cw<CR>', { desc = 'grep word' })
 
+vim.keymap.set('n', 'gm', function()
+  local cmd = ':vertical Man ' .. vim.fn.expand '<cword>'
+  vim.cmd(cmd)
+end, { desc = 'open man page' })
+
 vim.keymap.set('n', 'gX', function()
   local word = vim.fn.expand '<cfile>'
   local url = 'https://github.com/' .. word
