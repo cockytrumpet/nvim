@@ -120,21 +120,21 @@ local M = {
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
-        terminal.send('clear &&' .. cmd, 'horizontal')
+        terminal.send(cmd, 'horizontal')
       end
     end, { desc = 'run file' })
     vim.keymap.set('n', '<leader>trv', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
-        terminal.send('clear &&' .. cmd, 'vertical')
+        terminal.send(cmd, 'vertical')
       end
     end, { desc = 'run file' })
     vim.keymap.set('n', '<leader>trf', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
-        terminal.send('clear &&' .. cmd, 'float')
+        terminal.send(cmd, 'float')
       end
     end, { desc = 'run file' })
   end,
