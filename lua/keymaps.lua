@@ -42,9 +42,11 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous diagnosti
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next diagnostic message' })
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'show diagnostic error messages' })
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
+--[[
 vim.keymap.set('n', '<leader>rf', function()
   _G.run_code()
 end, { desc = 'run file' })
+]]
 vim.keymap.set('n', '<leader>a', function()
   require('conform').format {
     lsp_fallback = true,

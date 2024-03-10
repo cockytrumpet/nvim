@@ -4,7 +4,6 @@ local function substitute(cmd)
   cmd = cmd:gsub('$filePath', vim.fn.expand '%:p')
   cmd = cmd:gsub('$file', vim.fn.expand '%')
   cmd = cmd:gsub('$dir', vim.fn.expand '%:p:h')
-  ---@diagnostic disable-next-line: param-type-mismatch
   cmd = cmd:gsub('$moduleName', vim.fn.substitute(vim.fn.substitute(vim.fn.fnamemodify(vim.fn.expand '%:r', ':~:.'), '/', '.', 'g'), '\\', '.', 'g'))
   cmd = cmd:gsub('#', vim.fn.expand '#')
   cmd = cmd:gsub('$altFile', vim.fn.expand '#')
@@ -90,6 +89,7 @@ local function get_command()
       vim.ui.select(choices, { prompt = 'Choose: ' }, function(choice)
         selectedCmd = supportedFiletypes[fileExtension][choice]
         if selectedCmd then
+          ---@diagnostic disable-next-line: redundant-return-value
           return substitute(selectedCmd)
         end
       end)
@@ -104,9 +104,6 @@ local M = {
   'NvChad/nvterm',
   init = function()
     local terminal = require 'nvterm.terminal'
-    local ft_cmds = {
-      python = 'python3 ' .. vim.fn.expand '%',
-    }
     vim.keymap.set({ 'n', 't' }, '<leader>th', function()
       terminal.toggle 'horizontal'
     end, { desc = 'horizontal terminal' })
@@ -122,21 +119,21 @@ local M = {
       if cmd then
         terminal.send(cmd, 'horizontal')
       end
-    end, { desc = 'run file' })
+    end, { desc = 'horizontal terminal' })
     vim.keymap.set('n', '<leader>trv', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
         terminal.send(cmd, 'vertical')
       end
-    end, { desc = 'run file' })
+    end, { desc = 'vertical terminal' })
     vim.keymap.set('n', '<leader>trf', function()
       -- terminal.send(ft_cmds[vim.bo.filetype])
       local cmd = get_command()
       if cmd then
         terminal.send(cmd, 'float')
       end
-    end, { desc = 'run file' })
+    end, { desc = 'floating terminal' })
   end,
   config = function()
     require('nvterm').setup {

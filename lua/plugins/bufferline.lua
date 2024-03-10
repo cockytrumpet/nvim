@@ -26,6 +26,7 @@ local M = {
         style_preset = bufferline.style_preset.default, -- default | minimal
         separator_style = 'slant', -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         highlights = function()
+          ---@diagnostic disable-next-line: different-requires
           require('catppuccin.groups.integrations.bufferline').get()
         end,
         offsets = {
