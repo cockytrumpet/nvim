@@ -190,6 +190,8 @@ local M = { -- LSP Configuration & Plugins
               -- Tells lua_ls where to find all the Lua files that you have loaded
               -- for your neovim configuration.
               library = {
+                'lua',
+                '$VIMRUNTIME/lua',
                 '${3rd}/luv/library',
                 unpack(vim.api.nvim_get_runtime_file('', true)),
               },
@@ -213,6 +215,14 @@ local M = { -- LSP Configuration & Plugins
             },
           },
         },
+      },
+
+      omnisharp = {
+        cmd = { 'omnisharp' },
+        enable_roslyn_analyzers = true,
+        -- analyze_open_documents_only = true,
+        organize_imports_on_format = true,
+        enable_import_completion = true,
       },
     }
 
