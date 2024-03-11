@@ -65,7 +65,7 @@ local function telescope_custom_colors()
   "pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
   "desert", "delek", "default", "darkblue", "blue", "vim", "zaibatsu", "wildcharm",
   "catppuccin-latte", "tokyonight-day", "minicyan", "minischeme", "morning", "randomhue",
-  "retrobox", "sorbet", "bamboo-light", "dayfox", "dawnfox", "rose-pine", "rose-pine-dawn"  }
+  "retrobox", "sorbet", "bamboo-light", "dayfox", "dawnfox", "rose-pine", "rose-pine-dawn", "habamax"  }
 
   local target = vim.fn.getcompletion
 
