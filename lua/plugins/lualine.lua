@@ -11,11 +11,11 @@ local function diff_source()
   end
 end
 --[[
--- FIXME: This is a temporary function to test diagnostics
+-- NOTE: This is to test diagnostics
 local function make_some_errors()
   vim.api.nvim_win_get_option(0, 'number')
   1/0
-end
+end -- FIX: comment this block out or bad stuff
 ]]
 local function lsp()
   local msg = ''
@@ -61,7 +61,7 @@ local M = {
   config = function()
     require('lualine').setup {
       options = {
-        theme = 'catppuccin',
+        theme = 'auto',
         section_separators = { '', '' },
         component_separators = { '', '' },
         always_divide_middle = false,

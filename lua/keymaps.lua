@@ -58,5 +58,34 @@ vim.keymap.set('n', '<leader>i', function()
   vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Inlay Hints' })
 
+-- [[ colorscheme ]]
+local function telescope_custom_colors()
+  -- stylua: ignore
+  local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
+  "pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
+  "desert", "delek", "default", "darkblue", "blue", "vim", "zaibatsu", "wildcharm",
+  "catppuccin-latte", "tokyonight-day", "minicyan", "minischeme", "morning", "randomhue",
+  "retrobox", "sorbet", "bamboo-light", "dayfox", "dawnfox", "rose-pine", "rose-pine-dawn"  }
+
+  local target = vim.fn.getcompletion
+
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.fn.getcompletion = function()
+    ---@diagnostic disable-next-line: redundant-parameter
+    return vim.tbl_filter(function(color)
+      return not vim.tbl_contains(builtins, color)
+    end, target('', 'color'))
+  end
+
+  vim.cmd 'Telescope colorscheme enable_preview=true'
+  vim.fn.getcompletion = target
+end
+
+vim.keymap.set('n', '<leader>fT', function() -- Show all custom colors in telescope
+  vim.schedule(function()
+    telescope_custom_colors()
+  end)
+end, { desc = 'themes', silent = true })
+
 -- [[ Plugin specific ]]
 vim.keymap.set('n', '<leader>gg', '<CMD>Neogit<CR>', { desc = 'Neogit' })

@@ -43,7 +43,7 @@ local M = {
     view = {
       side = 'left',
       relativenumber = true,
-      width = { min = 40, padding = 2 },
+      width = { min = 20, padding = 2 },
     },
     hijack_unnamed_buffer_when_opening = false,
     hijack_cursor = false,

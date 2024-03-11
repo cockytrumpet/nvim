@@ -60,5 +60,4 @@ require('lazy').setup({
 
 require 'autocmd' -- lua.autocmd
 require 'utils' -- lua.utils
-
 -- vim: ts=2 sts=2 sw=2 et
