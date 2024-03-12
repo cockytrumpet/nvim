@@ -53,6 +53,15 @@ local function lsp()
   return msg
 end
 
+local getHL = function()
+  local hl = {}
+  -- for num, mode in pairs { 'enabled', 'sleep', 'disabled', 'warning', 'unknown' } do
+  for mode, num in pairs { enabled = 4, sleep = 5, disabled = 2, warning = 1, unknown = 6 } do
+    hl[mode] = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Rainbow' .. num)), 'fg')
+  end
+  return hl
+end
+
 local M = {
   'nvim-lualine/lualine.nvim',
   lazy = false,
@@ -98,13 +107,14 @@ local M = {
                   warning = ' ',
                   unknown = ' ',
                 },
-                hl = {
-                  enabled = '#94e2d5',
-                  sleep = '#AEB7D0',
-                  disabled = '#6272A4',
-                  warning = '#fab387',
-                  unknown = '#f38ba8',
-                },
+                hl = getHL(),
+                -- hl = {
+                --   enabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow4'), 'fg')]], --'#94e2d5',
+                --   sleep = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow3'), 'fg')]], --'#AEB7D0',
+                --   disabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow2'), 'fg')]], --'#6272A4',
+                --   warning = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow1'), 'fg')]], --'#fab387',
+                --   unknown = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow6'), 'fg')]], --'#f38ba8',
+                -- },
               },
               spinners = require('copilot-lualine.spinners').dots,
               spinner_color = '#6272A4',
@@ -113,10 +123,9 @@ local M = {
             show_loading = true,
           },
           { lsp, color = { fg = '#89b4fa' } },
-          'filetype',
         },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' },
+        lualine_y = { 'filetype' },
+        lualine_z = { 'progress', 'location' },
       },
       inactive_sections = {
         lualine_a = {},
@@ -126,7 +135,16 @@ local M = {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      --[[
+      tabline = {
+        lualine_a = { 'buffers' },
+        lualine_b = { 'branch' },
+        lualine_c = { 'filename' },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'tabs' },
+      },
+]]
       extensions = {},
     }
   end,
