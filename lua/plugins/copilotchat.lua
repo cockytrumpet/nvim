@@ -1,6 +1,18 @@
 local M = {
   'CopilotC-Nvim/CopilotChat.nvim',
   branch = 'canary',
+  cmd = {
+    'CopilotChat',
+    'CopilotChatToggle',
+    'CopilotChatExplain',
+    'CopilotChatFix',
+    'CopilotChatOptimize',
+    'CopilotChatDocs',
+    'CopilotChatFixDiagnostic',
+    'CopilotChatCommit',
+    'CopilotChatCommitStaged',
+    'CopilotChatReset',
+  },
   dependencies = {
     { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
     { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
