@@ -1,6 +1,9 @@
 local M = {
   'jay-babu/mason-nvim-dap.nvim',
   event = 'VeryLazy',
+  init = function()
+    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+  end,
   config = function()
     local dap = require 'dap'
 
