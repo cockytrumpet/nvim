@@ -10,12 +10,14 @@ local function diff_source()
     }
   end
 end
---[[
+
 -- NOTE: This is to test diagnostics
+--[[
+-- FIX: comment this block out or bad stuff
 local function make_some_errors()
   vim.api.nvim_win_get_option(0, 'number')
   1/0
-end -- FIX: comment this block out or bad stuff
+end
 ]]
 local function lsp()
   local msg = ''
@@ -54,12 +56,12 @@ local function lsp()
 end
 
 local getHL = function()
-  local hl = {}
-  -- for num, mode in pairs { 'enabled', 'sleep', 'disabled', 'warning', 'unknown' } do
-  for mode, num in pairs { enabled = 4, sleep = 5, disabled = 2, warning = 1, unknown = 6 } do
-    hl[mode] = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Rainbow' .. num)), 'fg')
+  local highlights = {}
+  -- for mode, num in pairs { enabled = 4, sleep = 5, disabled = 2, warning = 1, unknown = 6 } do -- 'Rainbow' .. num
+  for mode, hl in pairs { enabled = 'GitSignsAdd', sleep = 'NeogitGraphBlue', disabled = 'GitSignsChanged', warning = 'GitSignsDelete', unknown = 'Grey' } do
+    highlights[mode] = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl)), 'fg')
   end
-  return hl
+  return highlights
 end
 
 local M = {
