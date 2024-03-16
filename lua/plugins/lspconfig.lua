@@ -18,7 +18,7 @@ vim.diagnostic.config {
   },
   -- virtual_text = false,
   float = {
-    source = 'always',
+    source = 'if_many',
     border = 'rounded',
   },
   signs = true,
