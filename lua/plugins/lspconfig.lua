@@ -128,6 +128,8 @@ local M = { -- LSP Configuration & Plugins
         },
       },
 
+      -- basedpyright = {},
+
       pyright = {
         cmd = { 'pyright-langserver', '--stdio', '--pythonPath ', '/Users/adam/.pyenv/shims/python3' },
         filetypes = { 'python' },
