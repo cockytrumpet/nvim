@@ -260,7 +260,7 @@ local M = { -- LSP Configuration & Plugins
       'ocamlformat',
 
       -- Rust
-      'rust-analyzer',
+      -- 'rust-analyzer',
 
       'dockerfile-language-server',
       'yaml-language-server',
