@@ -1,28 +1,11 @@
+-- other themes
 local themes = {
-  {
-    'rose-pine/neovim',
-    name = 'colors_rose-pine',
-  },
-  {
-    'sainnhe/everforest',
-    name = 'colors_everforest',
-  },
-  {
-    'folke/tokyonight.nvim',
-    name = 'colors_tokyonight',
-  },
-  {
-    'EdenEast/nightfox.nvim',
-    name = 'colors_nightfox',
-  },
-  {
-    'rose-pine/neovim',
-    name = 'colors_rose-pine',
-  },
-  {
-    'ribru17/bamboo.nvim',
-    name = 'colors_bamboo',
-  },
+  { 'sainnhe/everforest' },
+  { 'rose-pine/neovim' },
+  { 'ribru17/bamboo.nvim' },
+  { 'shaunsingh/nord.nvim' },
+  { 'folke/tokyonight.nvim' },
+  { 'EdenEast/nightfox.nvim' },
+  { 'olimorris/onedarkpro.nvim' },
 }
-
 return themes
