@@ -3,6 +3,10 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
   event = 'VeryLazy',
   branch = '0.1.x',
   dependencies = {
+    {
+      'isak102/telescope-git-file-history.nvim',
+      dependencies = { 'tpope/vim-fugitive' },
+    },
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
     'nvim-tree/nvim-web-devicons',
@@ -80,9 +84,11 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'file_browser')
     pcall(require('telescope').load_extension, 'luasnip')
     pcall(require('telescope').load_extension, 'gpt')
+    pcall(require('telescope').load_extension, 'git_file_history')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
+    vim.keymap.set('n', '<leader>gh', '<CMD>Telescope git_file_history<CR>', { desc = 'file history' })
     vim.keymap.set('n', '<leader>fb', '<CMD>Telescope file_browser<CR>', { desc = 'file browser' })
     vim.keymap.set('n', '<leader>fc', '<CMD>Telescope gpt<CR>', { desc = 'ChatGPT' })
     vim.keymap.set('n', '<leader>fg', '<CMD>Telescope git_status<CR>', { desc = 'git' })
