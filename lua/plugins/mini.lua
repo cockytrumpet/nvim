@@ -1,6 +1,13 @@
 local M = { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
+  event = 'BufReadPre',
   config = function()
+    -- Split/Joint lines
+    require('mini.splitjoin').setup {
+      -- Use default keymaps
+      use_default_keymaps = true,
+    }
+
     -- Better Around/Inside textobjects
     --
     -- Examples:
