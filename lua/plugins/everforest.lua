@@ -7,12 +7,14 @@ local M = {
   config = function()
     local everforest = require 'everforest'
     everforest.setup {
-      background = 'medium',
+      background = 'hard',
       transparent_background_level = 0,
       italics = true,
       disable_italic_comments = false,
       on_highlights = function(hl, _)
-        hl['@symbol'] = { link = '@field' }
+        -- hl['@symbol'] = { link = '@field' }
+        -- hl['FloatBorder'] { guifg=#859289, guibg=#3d484d }
+        hl['FloatBorder'] = { link = 'Gray' }
       end,
     }
     -- everforest.load()
