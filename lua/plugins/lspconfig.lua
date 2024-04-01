@@ -27,8 +27,11 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
+require('lspconfig.ui.windows').default_options.border = 'single'
+
 local M = { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for neovim
     'williamboman/mason.nvim',
@@ -232,6 +235,9 @@ local M = { -- LSP Configuration & Plugins
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+      -- markdown
+      'marksman',
+
       -- lua stuff
       'stylua',
 

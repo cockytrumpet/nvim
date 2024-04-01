@@ -1,6 +1,7 @@
 local M = {
   'nvim-neorg/neorg',
-  build = ':Neorg sync-parsers',
+  -- build = ':Neorg sync-parsers',
+  enabled = false, -- TODO: fix breaking changes if this is still wanted
   dependencies = { 'nvim-lua/plenary.nvim' },
   cmd = 'Neorg',
   config = function()
