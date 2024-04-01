@@ -18,6 +18,7 @@ local M = { -- Useful plugin to show you pending keybinds.
       ['<leader>t'] = { name = '[t]ab/term/todo', _ = 'which_key_ignore' },
       ['<leader>tr'] = { name = '[r]un', _ = 'which_key_ignore' },
       ['<leader>w'] = { name = '[w]indow', _ = 'which_key_ignore' },
+      ['<leader>y'] = { name = '[y]taudio', _ = 'which_key_ignore' },
       ['<leader>z'] = { name = '[z]en mode', _ = 'which_key_ignore' },
     }
   end,
