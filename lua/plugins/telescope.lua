@@ -66,6 +66,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
         },
       },
     }
+    --[[
     local trouble = require 'trouble.providers.telescope'
 
     local telescope = require 'telescope'
@@ -78,6 +79,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
         },
       },
     }
+]]
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
@@ -95,7 +97,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fm', function()
       require('telescope').extensions.notify.notify()
     end, { desc = 'message history' })
-    vim.keymap.set('n', '<leader>ft', '<CMD>TodoTelescope<CR>', { desc = 'Todo' })
+    -- vim.keymap.set('n', '<leader>ft', '<CMD>TodoTelescope<CR>', { desc = 'Todo' })
 
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'diagnostics' })
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'files' })

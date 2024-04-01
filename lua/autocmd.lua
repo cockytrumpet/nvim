@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- turn scroll off in these
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'noice', 'neotest-output', 'neotest-summary', 'neotest-output-panel' },
+  pattern = { 'noice', 'neotest-output', 'neotest-summary', 'neotest-output-panel', 'help' },
   callback = function()
     if vim.bo.buftype == 'terminal' then
       vim.o.scrolloff = 0

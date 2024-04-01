@@ -1,6 +1,6 @@
 local M = { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
-  event = 'BufReadPre',
+  event = 'BufWinEnter',
   config = function()
     -- Split/Joint lines
     require('mini.splitjoin').setup {

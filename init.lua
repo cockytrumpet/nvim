@@ -12,7 +12,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { import = 'plugins' },
 }, {
+  defaults = {
+    lazy = true,
+  },
   ui = {
+    backdrop = 100,
     icons = {
       ft = '',
       lazy = '󰂠 ',
