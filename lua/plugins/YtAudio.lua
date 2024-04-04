@@ -9,7 +9,7 @@ local M = {
 
 local M = {
   'cockytrumpet/YtAudio',
-  -- branch = 'now_playing',
+  -- branch = 'testing',
   init = function()
     vim.api.nvim_set_keymap('n', '<leader>yp', ':YAPlay<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<leader>ys', ':YAStop<CR>', { noremap = true, silent = true })
