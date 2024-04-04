@@ -1,12 +1,6 @@
 local M = {
   'nvim-tree/nvim-tree.lua',
   event = 'VeryLazy',
-  dependencies = {
-    'antosha417/nvim-lsp-file-operations',
-    config = function()
-      require('lsp-file-operations').setup()
-    end,
-  },
   init = function()
     vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'toggle nvimtree' })
   end,
