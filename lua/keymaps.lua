@@ -3,6 +3,7 @@ vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'noh'
   vim.cmd 'Noice dismiss'
 end)
+vim.keymap.set('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, replace_keycodes = false, desc = 'Visually select changed text' })
 
 vim.keymap.set('n', '<leader>x', function()
   close_current_buffer()
@@ -14,9 +15,9 @@ vim.keymap.set('n', '<leader>tn', '<CMD>$tabnew<CR>', { desc = 'new tab' })
 vim.keymap.set('n', '<leader>tc', '<CMD>tabc<CR>', { desc = 'close tab' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' })
--- vim.keymap.set('n', '<leader>tv', '<CMD>vsplit term://zsh<CR>', { desc = 'Open terminal (vertical)' })
--- vim.keymap.set('n', '<leader>th', '<CMD>split term://zsh<CR>', { desc = 'Open terminal (horizontal)' })
 
+vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'insert line(s) above' })
+vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'insert line(s) below' })
 vim.keymap.set('i', '<C-Up>', '<CMD>m .-2<CR>==', { desc = '󰜸 move line up' })
 vim.keymap.set('i', '<C-Down>', '<CMD>m .+1<CR>==', { desc = '󰜯 move line down' })
 vim.keymap.set('n', '<left>', '<CMD>vertical resize -1<CR>', { desc = 'vertical +' })
