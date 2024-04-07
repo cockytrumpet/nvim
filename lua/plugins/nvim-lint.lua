@@ -1,3 +1,10 @@
+local get_path_string = function()
+  local f = io.open('/Users/adam/.pyenv/version', 'r')
+  local version = f:read '*a'
+  f:close()
+  return string.format('~/.pyenv/versions/%s/lib/%s/site-packages/', version, string.sub(version, 1, 4))
+end
+
 local M = {
   'mfussenegger/nvim-lint',
   event = { 'BufReadPre', 'BufNewFile' },
@@ -11,6 +18,21 @@ local M = {
       typescriptreact = { 'eslint_d' },
       svelte = { 'eslint_d' },
       python = { 'pylint' },
+    }
+
+    lint.linters.cspell = require('lint.util').wrap(lint.linters.cspell, function(diagnostic)
+      diagnostic.severity = vim.diagnostic.severity.HINT
+      return diagnostic
+    end)
+
+    lint.linters.pylint.args = {
+      '-f',
+      'json',
+      '--init-hook',
+      get_path_string(),
+      '--recursive',
+      'y',
+      '--disable=invalid-namae,missing-docstring',
     }
 
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
