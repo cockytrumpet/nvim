@@ -15,6 +15,10 @@ require('lazy').setup({
   defaults = {
     lazy = true,
   },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
   ui = {
     backdrop = 100,
     icons = {

@@ -1,6 +1,6 @@
 ---@diagnostic disable: undefined-field
 
-local function diff_source()
+local diff_source = function()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
     return {
@@ -14,11 +14,12 @@ end
 -- NOTE: This is to test diagnostics
 --[[
 -- FIX: comment this block out or bad stuff
-local function make_some_errors()
+local make_some_errors()
   vim.api.nvim_win_get_option(0, 'number')
   1/0
 end
 ]]
+
 local function lsp()
   local msg = ''
   local bufnr = vim.api.nvim_get_current_buf()
@@ -50,6 +51,15 @@ local function lsp()
       end
     end
   end
+  -- Linters
+  local linters = require('lint').get_running()
+
+  if #linters > 0 then
+    if msg ~= '' then
+      msg = msg .. ', '
+    end
+    msg = msg .. table.concat(linters, ', ')
+  end
 
   -- msg = "' " .. msg
   return msg
@@ -70,7 +80,10 @@ local M = {
   priority = 999,
   dependencies = { 'nvim-tree/nvim-web-devicons', 'AndreM222/copilot-lualine' },
   config = function()
-    require('lualine').setup {
+    local lualine = require 'lualine'
+    local lazy_status = require 'lazy.status'
+
+    lualine.setup {
       options = {
         theme = 'auto',
         section_separators = { '', '' },
@@ -98,6 +111,11 @@ local M = {
           },
         },
         lualine_x = {
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = '#ff9e64' },
+          },
           {
             'copilot',
             symbols = {

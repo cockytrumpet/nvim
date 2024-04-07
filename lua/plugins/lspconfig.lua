@@ -247,6 +247,7 @@ local M = { -- LSP Configuration & Plugins
       'typescript-language-server',
       'deno',
       'prettier',
+      'eslint',
 
       -- c/cpp stuff
       'clang-format',
@@ -256,6 +257,7 @@ local M = { -- LSP Configuration & Plugins
       'black',
       'debugpy',
       'isort',
+      'pylint',
 
       -- Json
       'jsonlint',
