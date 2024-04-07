@@ -19,7 +19,8 @@ vim.api.nvim_create_user_command('Update', function()
     vim.cmd(command)
   end
   require('lazy').sync()
-  require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
+  -- require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
+  require('nvterm.terminal').send('brew update;brew upgrade --fetch-HEAD;pipupall', 'vertical')
 end, {})
 
 ---@param force? boolean defaults to false.
@@ -66,7 +67,7 @@ function _G.close_current_buffer(force, ignore_list)
     end
     if warning then
       vim.ui.input({
-        prompt = string.format([[%s. Close it anyway? [y]es or [n]o (default: no): ]], warning),
+        prompt = string.format([[%s. Close it? y/n: ]], warning),
       }, function(choice)
         if choice:match 'ye?s?' then
           force = true
