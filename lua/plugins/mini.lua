@@ -1,5 +1,6 @@
 local M = { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
+  version = false,
   event = 'VimEnter',
   config = function()
     -- Split/Joint lines
@@ -28,6 +29,7 @@ local M = { -- Collection of various small independent plugins/modules
     --  and try some other statusline plugin
     -- require('mini.statusline').setup()
     -- don't use animate when scrolling with the mouse
+
     local mouse_scrolled = false
     for _, scroll in ipairs { 'Up', 'Down' } do
       local key = '<ScrollWheel' .. scroll .. '>'
@@ -57,6 +59,7 @@ local M = { -- Collection of various small independent plugins/modules
       },
     }
 
+    require('mini.extra').setup()
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
   end,

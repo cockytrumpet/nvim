@@ -2,6 +2,7 @@ local M = { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   event = 'BufRead',
+  dependencies = { 'windwp/nvim-ts-autotag' },
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
@@ -10,6 +11,7 @@ local M = { -- Highlight, edit, and navigate code
       ensure_installed = { 'bash', 'html', 'c', 'markdown', 'lua', 'vim', 'vimdoc', 'python', 'go', 'rust' },
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = true,
+      autotag = { enable = true },
       highlight = { enable = true },
       indent = { enable = true },
     }

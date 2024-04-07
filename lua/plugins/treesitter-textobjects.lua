@@ -1,5 +1,6 @@
 local M = {
   'nvim-treesitter/nvim-treesitter-textobjects',
+  enabled = false, -- going to try mini.ai
   dependencies = 'nvim-treesitter/nvim-treesitter',
   event = 'BufRead',
   config = function()
