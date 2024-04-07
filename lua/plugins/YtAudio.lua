@@ -33,6 +33,8 @@ local M = {
     )
   end,
   event = 'VeryLazy',
-  opts = true,
+  opts = {
+    notifications = false,
+  },
 }
 return M
