@@ -1,3 +1,10 @@
+vim.cmd [[
+:hi NvimTreeDiagnosticErrorIcon     ctermfg=9 guifg=NvimLightRed
+:hi NvimTreeDiagnosticWarnIcon      ctermfg=11 guifg=NvimLightYellow
+:hi NvimTreeDiagnosticInfoIcon      ctermfg=14 guifg=NvimLightCyan
+:hi NvimTreeDiagnosticHintIcon      ctermfg=12 guifg=NvimLightBlue
+]]
+
 local M = {
   'nvim-tree/nvim-tree.lua',
   event = 'VeryLazy',
@@ -30,13 +37,6 @@ local M = {
       highlight_modified = 'none',
       highlight_bookmarks = 'all',
       root_folder_label = false,
-      --[[
-      icons = {
-        show = {
-          git = true,
-        },
-      },
-]]
       indent_markers = {
         enable = true,
       },
@@ -44,12 +44,15 @@ local M = {
         show = {
           git = true,
         },
+        web_devicons = {},
+        --[[
         glyphs = {
           folder = {
             arrow_closed = '', -- arrow when folder is closed
             arrow_open = '', -- arrow when folder is open
           },
         },
+]]
       },
     },
     view = {
