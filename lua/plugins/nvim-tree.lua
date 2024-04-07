@@ -3,6 +3,8 @@ local M = {
   event = 'VeryLazy',
   init = function()
     vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'toggle nvimtree' })
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
   end,
   opts = {
     git = {
@@ -28,9 +30,25 @@ local M = {
       highlight_modified = 'none',
       highlight_bookmarks = 'all',
       root_folder_label = false,
+      --[[
       icons = {
         show = {
           git = true,
+        },
+      },
+]]
+      indent_markers = {
+        enable = true,
+      },
+      icons = {
+        show = {
+          git = true,
+        },
+        glyphs = {
+          folder = {
+            arrow_closed = '', -- arrow when folder is closed
+            arrow_open = '', -- arrow when folder is open
+          },
         },
       },
     },
