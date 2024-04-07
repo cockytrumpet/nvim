@@ -49,6 +49,7 @@ local M = { -- Autocompletion
     --    for various frameworks/libraries/etc. but you will have to
     --    set up the ones that are useful for you.
     'rafamadriz/friendly-snippets',
+    'hrsh7th/cmp-buffer',
   },
   config = function()
     -- See `:help cmp`
@@ -77,9 +78,11 @@ local M = { -- Autocompletion
       },
       completion = {
         completeopt = 'menu,menuone,noinsert,noselect',
+        -- completeopt = 'menu,menuone,noinsert,preview,noselect',
         autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
         keyword_length = 1,
       },
+
       experimental = {
         --[[
         ghost_text = {
@@ -136,9 +139,10 @@ local M = { -- Autocompletion
       },
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'copilot' },
+        { name = 'copilot', max_item_count = 2 },
         { name = 'codeium', max_item_count = 2 },
-        { name = 'luasnip' },
+        { name = 'luasnip', max_item_count = 3 },
+        { name = 'buffer', max_item_count = 3 },
         { name = 'path' },
         { name = 'crates' },
       },
