@@ -131,8 +131,25 @@ local M = { -- LSP Configuration & Plugins
         },
       },
 
-      -- basedpyright = {},
+      basedpyright = {
+        cmd = { 'basedpyright-langserver', '--stdio' },
+        filetypes = { 'python' },
+        settings = {
+          basedpyright = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = 'openFilesOnly',
+              useLibraryCodeForTypes = true,
+            },
+          },
+          extraPaths = {
+            '/Users/adam/.pyenv/versions',
+          },
+        },
+        single_file_support = true,
+      },
 
+      --[[
       pyright = {
         cmd = { 'pyright-langserver', '--stdio', '--pythonPath ', '/Users/adam/.pyenv/shims/python3' },
         filetypes = { 'python' },
@@ -153,7 +170,7 @@ local M = { -- LSP Configuration & Plugins
         },
         -- single_file = true,
       },
-
+]]
       ruff_lsp = {
         -- organize imports disabled, since we are already using `isort` for that
         -- alternative, this can be enabled to make `organize imports`
