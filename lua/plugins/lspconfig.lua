@@ -38,7 +38,18 @@ local M = { -- LSP Configuration & Plugins
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'folke/neodev.nvim',
-    { 'j-hui/fidget.nvim', event = 'VeryLazy', opts = {} },
+    {
+      'j-hui/fidget.nvim',
+      event = 'VeryLazy',
+      opts = {
+        integration = {
+          -- turn off nvim-tree?
+          ['nvim-tree'] = {
+            enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+          },
+        },
+      },
+    },
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {

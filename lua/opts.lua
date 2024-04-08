@@ -38,7 +38,8 @@ vim.opt.pumheight = 8 -- pop up menu height
 vim.opt.relativenumber = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 8
-vim.opt.sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize'
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+-- vim.opt.sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize'
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.shortmess:append 'IAc' -- Disable asking when editing file with swapfile.
 vim.opt.showmode = false
