@@ -27,6 +27,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
       'HPRIOR/telescope-gpt',
       dependencies = { 'nvim-telescope/telescope.nvim', 'jackMort/ChatGPT.nvim' },
     },
+    'ghassan0/telescope-glyph.nvim',
   },
   config = function()
     -- Insert mode: <c-/>
@@ -64,9 +65,21 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
           },
           theme = require('telescope.themes').get_dropdown {},
         },
+        ['glyph'] = {
+          action = function(glyph)
+            -- argument glyph is a table.
+            -- {name="", value="", category="", description=""}
+
+            -- vim.fn.setreg('*', glyph.value)
+            -- print([[Press p or "*p to paste this glyph]] .. glyph.value)
+
+            -- insert glyph when picked
+            vim.api.nvim_put({ glyph.value }, 'c', false, true)
+          end,
+        },
       },
     }
-    --[[
+
     local trouble = require 'trouble.providers.telescope'
 
     local telescope = require 'telescope'
@@ -79,7 +92,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
         },
       },
     }
-]]
+
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
@@ -87,6 +100,7 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'luasnip')
     pcall(require('telescope').load_extension, 'gpt')
     pcall(require('telescope').load_extension, 'git_file_history')
+    pcall(require('telescope').load_extension, 'glyph')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
