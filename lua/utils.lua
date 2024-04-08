@@ -1,42 +1,30 @@
---[[
-vim.api.nvim_create_user_command('Update', function()
-  local commands = {
-    'MasonUpdate',
-    'MasonToolsUpdate',
-  }
-  for _, command in pairs(commands) do
-    vim.cmd(command)
-  end
-  require('lazy').sync()
-end, {})
-]]
-vim.api.nvim_create_user_command('Update', function()
-  local commands = {
-    'MasonUpdate',
-    'MasonToolsUpdate',
-  }
-  for _, command in pairs(commands) do
-    vim.cmd(command)
-  end
-  require('lazy').sync()
-  -- require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
-  require('nvterm.terminal').send('brew update;brew upgrade --fetch-HEAD;pipupall', 'vertical')
-end, {})
+local M = {}
 
-vim.api.nvim_create_user_command('R', function(ctx)
-  local cmd = 'lua=' .. ctx.args
-  local lines = vim.split(vim.api.nvim_exec(cmd, true), '\n', { plain = true })
-  vim.cmd 'vnew'
-  vim.api.nvim_set_option_value('filetype', 'lua', { buf = 0 })
-  vim.api.nvim_set_option_value('buflisted', false, { buf = 0 })
-  vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', { noremap = true, silent = true })
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-  vim.opt_local.modified = false
-end, { nargs = '+', complete = 'command' })
+local telescope_custom_colors = function()
+  -- stylua: ignore
+  local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
+  "pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
+  "desert", "delek", "default", "darkblue", "blue", "vim", "zaibatsu", "wildcharm",
+  "catppuccin-latte", "tokyonight-day", "minicyan", "minischeme", "morning", "randomhue",
+  "retrobox", "sorbet", "bamboo-light", "dayfox", "dawnfox", "rose-pine", "rose-pine-dawn", "habamax"  }
+
+  local target = vim.fn.getcompletion
+
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.fn.getcompletion = function()
+    ---@diagnostic disable-next-line: redundant-parameter
+    return vim.tbl_filter(function(color)
+      return not vim.tbl_contains(builtins, color)
+    end, target('', 'color'))
+  end
+
+  vim.cmd 'Telescope colorscheme enable_preview=true'
+  vim.fn.getcompletion = target
+end
 
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
-function _G.close_current_buffer(force, ignore_list)
+local close_current_buffer = function(force, ignore_list)
   -- Command used to kill the buffer.
   local kill_command = 'bd'
 
@@ -132,8 +120,8 @@ function _G.close_current_buffer(force, ignore_list)
   -- If there was only one buffer (which had to be the current one), vim will
   -- create a new buffer (and keep a window open) on :bd.
 end
---[[
-local function file_exists(name)
+
+local file_exists = function(name)
   local f = io.open(name, 'r')
   if f ~= nil then
     io.close(f)
@@ -142,8 +130,8 @@ local function file_exists(name)
     return false
   end
 end
-]]
-local function substitute(cmd)
+
+local substitute = function(cmd)
   cmd = cmd:gsub('%%', vim.fn.expand '%')
   cmd = cmd:gsub('$fileBase', vim.fn.expand '%:r')
   cmd = cmd:gsub('$filePath', vim.fn.expand '%:p')
@@ -157,7 +145,7 @@ local function substitute(cmd)
   return cmd
 end
 
-function _G.run_code()
+local run_code = function()
   local fileExtension = vim.fn.expand '%:e'
   local selectedCmd = ''
   local options = 'bot 10 new | term '
@@ -245,141 +233,22 @@ function _G.run_code()
   end
 end
 
-P = function(v)
+local P = function(v)
   print(vim.inspect(v))
   return v
 end
 
-RELOAD = function(module)
+local RELOAD = function(module)
   package.loaded[module] = nil
   return require(module)
 end
 
-R = function(name)
-  RELOAD(name)
-  return require(name)
-end
+M.close_current_buffer = close_current_buffer
+M.file_exists = file_exists
+M.run_code = run_code
+M.substitute = substitute
+M.telescope_custom_colors = telescope_custom_colors
+M.P = P
+M.RELOAD = RELOAD
 
------------------- pytest TestOnSave ------------------
-
-local cmd = {
-  'pytest',
-  '--json-report',
-  '--json-report-file=/dev/stderr',
-  '-q',
-  '--no-header',
-  '--no-summary',
-}
-
-local attach_to_buffer = function(bufnr, command)
-  local group = vim.api.nvim_create_augroup('TestOnSave', { clear = true })
-  local ns = vim.api.nvim_create_namespace 'TestOnSave'
-
-  local state = {
-    bufnr = bufnr,
-    tests = {},
-    summary = {},
-  }
-
-  local add_test = function(entry)
-    local message = ''
-    if entry.call.longrepr then
-      message = entry.call.longrepr
-    end
-
-    state.tests[entry.nodeid] = {
-      outcome = entry.outcome,
-      nodeid = entry.nodeid,
-      test = entry.keywords[1],
-      file = entry.keywords[2],
-      line_number = entry.lineno,
-      message = message,
-    }
-  end
-
-  vim.api.nvim_create_user_command('TestLineDiag', function()
-    local line = vim.fn.line '.' - 1
-    for _, test in pairs(state.tests) do
-      if test.line_number == line then
-        vim.notify(test.message, vim.log.levels.ERROR, {
-          title = test.nodeid,
-          on_open = function(win)
-            local buf = vim.api.nvim_win_get_buf(win)
-            -- vim.api.nvim_buf_set_option(buf, 'filetype', 'python')
-            vim.api.nvim_set_option_value('filetype', 'python', { buf = buf })
-          end,
-        })
-      end
-    end
-  end, {})
-
-  vim.api.nvim_create_autocmd('BufWritePost', {
-    group = group,
-    pattern = '*.py',
-    callback = function()
-      vim.fn.jobstart(command, {
-        stdout_buffered = true,
-        stderr_buffered = true,
-        on_stderr = function(_, data)
-          if not data then
-            return
-          end
-
-          local decoded = vim.fn.json_decode(data)
-          if not decoded then
-            return
-          else
-            state.summary = decoded.summary
-          end
-
-          local tests = decoded.tests
-          if not tests then
-            return
-          end
-
-          vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
-
-          for _, line in pairs(tests) do
-            add_test(line)
-            if state.tests[line.nodeid].outcome == 'passed' then
-              local text = { '✓', 'DiagnosticOK' }
-              vim.api.nvim_buf_set_extmark(bufnr, ns, state.tests[line.nodeid].line_number, 0, {
-                virt_text = { text },
-              })
-            end
-          end
-        end,
-        on_exit = function()
-          local failed = {}
-          for _, test in pairs(state.tests) do
-            if test.outcome == 'failed' then
-              table.insert(failed, {
-                bufnr = bufnr,
-                lnum = test.line_number,
-                col = 0,
-                severity = vim.lsp.protocol.DiagnosticSeverity.Error,
-                source = 'pytest',
-                message = 'Test failed',
-                user_data = {},
-              })
-            end
-          end
-          vim.diagnostic.set(ns, bufnr, failed, {})
-          if state.summary.total == state.summary.passed then
-            vim.notify('All tests passed', vim.log.levels.INFO, {
-              title = state.summary.total .. ' tests completed',
-            })
-          else
-            vim.notify('Passed: ' .. state.summary.passed .. '\nFailed: ' .. state.summary.failed, vim.log.levels.WARN, {
-              title = state.summary.total .. ' tests completed',
-            })
-          end
-        end,
-      })
-    end,
-  })
-end
-
-vim.api.nvim_create_user_command('TestOnSave', function()
-  attach_to_buffer(vim.api.nvim_get_current_buf(), cmd)
-end, {})
+return M
