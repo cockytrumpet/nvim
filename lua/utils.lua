@@ -23,6 +23,17 @@ vim.api.nvim_create_user_command('Update', function()
   require('nvterm.terminal').send('brew update;brew upgrade --fetch-HEAD;pipupall', 'vertical')
 end, {})
 
+vim.api.nvim_create_user_command('R', function(ctx)
+  local cmd = 'lua=' .. ctx.args
+  local lines = vim.split(vim.api.nvim_exec(cmd, true), '\n', { plain = true })
+  vim.cmd 'vnew'
+  vim.api.nvim_set_option_value('filetype', 'lua', { buf = 0 })
+  vim.api.nvim_set_option_value('buflisted', false, { buf = 0 })
+  vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', { noremap = true, silent = true })
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  vim.opt_local.modified = false
+end, { nargs = '+', complete = 'command' })
+
 ---@param force? boolean defaults to false.
 ---@param ignore_list? table of buffer types to ignore.
 function _G.close_current_buffer(force, ignore_list)
