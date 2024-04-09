@@ -1,14 +1,38 @@
---[[
-local M = {
-  dir = '~/lua/plugins/YtAudio',
-  event = 'VeryLazy',
+-- toggle dev/live mode
+-------------------------
+local mode = 'live'
+-- local mode = 'dev'
+-------------------------
+
+local dev = {
+  dir = '~/dev/lua/plugins/YtAudio',
   name = 'YtAudio',
-  opts = true,
+  opts = {
+    dev_mode = true,
+    notifications = false,
+    volume = 50,
+    icon = '',
+  },
 }
-]]
+
+local live = {
+  'cockytrumpet/YtAudio',
+  opts = {
+    notifications = false,
+    volume = 25,
+    -- icon = '',
+  },
+}
+
+local get_opts = function()
+  if mode == 'dev' then
+    return dev
+  else
+    return live
+  end
+end
 
 local M = {
-  'cockytrumpet/YtAudio',
   init = function()
     -- stylua: ignore
     vim.api.nvim_set_keymap(
@@ -34,11 +58,16 @@ local M = {
       ':YAPlay https://www.youtube.com/watch?v=abUT5IEkwrg<CR>',
       { desc = 'Future Garage for Smooth Workflow', noremap = true, silent = true }
     )
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>y3',
+      ':YAPlay https://www.youtube.com/watch?v=RxLQ9boJJCE<CR>',
+      { desc = 'Dubstep/Future Bass', noremap = true, silent = true }
+    )
   end,
   event = 'VeryLazy',
-  opts = {
-    notifications = false,
-    -- icon = '',
-  },
+  -- cmd = 'YAPlay',
 }
+
+M = vim.tbl_extend('keep', get_opts(), M)
 return M
