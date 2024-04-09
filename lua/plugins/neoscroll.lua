@@ -18,7 +18,7 @@ local M = {
         }
         -- vim.api.nvim_command('setlocal cursorline')
         vim.wo.cursorline = false
-        require('treesitter-context').disable()
+        require('plugins.ts-context').disable()
       end, -- Function to run before the scrolling animation starts
       post_hook = function()
         vim.opt.eventignore:remove {
@@ -26,7 +26,7 @@ local M = {
           'CursorMoved',
         }
         vim.wo.cursorline = true
-        require('treesitter-context').enable()
+        require('plugins.ts-context').enable()
       end, -- Function to run after the scrolling animation ends
       performance_mode = false, -- Disable "Performance Mode" on all buffers.
     }
