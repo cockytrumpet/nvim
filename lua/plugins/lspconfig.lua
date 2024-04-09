@@ -45,7 +45,7 @@ local M = { -- LSP Configuration & Plugins
         integration = {
           -- turn off nvim-tree?
           ['nvim-tree'] = {
-            enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+            enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
           },
         },
       },

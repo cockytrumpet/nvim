@@ -2,6 +2,7 @@ vim.api.nvim_create_user_command('Update', function()
   local commands = {
     'MasonUpdate',
     'MasonToolsUpdate',
+    'TSUpdate',
   }
   for _, command in pairs(commands) do
     vim.cmd(command)
@@ -15,6 +16,7 @@ vim.api.nvim_create_user_command('GetTable', function(ctx)
   local cmd = 'lua=' .. ctx.args
   local lines = vim.split(vim.api.nvim_exec(cmd, true), '\n', { plain = true })
   vim.cmd 'vnew'
+  vim.cmd 'setlocal wrap'
   vim.api.nvim_set_option_value('filetype', 'lua', { buf = 0 })
   vim.api.nvim_set_option_value('buflisted', false, { buf = 0 })
   vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', { noremap = true, silent = true })
