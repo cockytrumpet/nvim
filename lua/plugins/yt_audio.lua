@@ -1,7 +1,7 @@
 -- toggle dev/live mode
 -------------------------
--- local mode = 'live'
-local mode = 'dev'
+local mode = 'live'
+-- local mode = 'dev'
 -------------------------
 
 local dev = {
@@ -34,6 +34,12 @@ end
 
 local M = {
   init = function()
+    -- stylua: ignore
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>yd',
+      '<CMD>GetTable require("yt_audio")<CR>',
+      { desc = 'show debug info', noremap = true, silent = true })
     -- stylua: ignore
     vim.api.nvim_set_keymap(
       'n',
