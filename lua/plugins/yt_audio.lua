@@ -1,7 +1,7 @@
 -- toggle dev/live mode
 -------------------------
-local mode = 'live'
--- local mode = 'dev'
+-- local mode = 'live'
+local mode = 'dev'
 -------------------------
 
 local dev = {
