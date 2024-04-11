@@ -5,13 +5,13 @@ local mode = 'live'
 -------------------------
 
 local dev = {
-  dir = '~/dev/lua/plugins/YtAudio',
-  name = 'YtAudio',
+  dir = '~/dev/lua/plugins/yt_audio',
+  name = 'yt_audio',
   opts = {
     dev_mode = true,
-    notifications = false,
+    notifications = true,
     volume = 50,
-    icon = '',
+    icon = '🚧', -- ☢️ 🛑 🚫 ⚠️ 🚧
   },
 }
 
@@ -20,7 +20,7 @@ local live = {
   opts = {
     notifications = false,
     volume = 25,
-    -- icon = '',
+    icon = '📻', -- '' 🎧 🎵 🎶 🎼 📻
   },
 }
 
@@ -66,7 +66,6 @@ local M = {
     )
   end,
   event = 'VeryLazy',
-  -- cmd = 'YAPlay',
 }
 
 M = vim.tbl_extend('keep', get_opts(), M)

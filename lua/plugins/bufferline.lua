@@ -42,10 +42,10 @@ local M = {
         -- diagnostics = 'nvim_lsp',
         custom_areas = {
           right = function()
-            local YtAudioTitle = require('YtAudio').getTitle()
-            if YtAudioTitle then
-              -- return { { text = YtAudioTitle, guifg = '#FF0000' } }
-              return { { text = YtAudioTitle } }
+            local title = require('yt_audio').get_title()
+            if title then
+              -- return { { text = title, guifg = '#FF0000' } }
+              return { { text = title } }
             end
           end,
         },
