@@ -1,7 +1,7 @@
 -- toggle dev/live mode
--------------------------
 local mode = 'live'
--- local mode = 'dev'
+-------------------------
+-- mode = 'dev'
 -------------------------
 
 local dev = {
@@ -20,7 +20,7 @@ local live = {
   opts = {
     notifications = false,
     volume = 25,
-    icon = '📻', -- '' 🎧 🎵 🎶 🎼 📻
+    icon = '🎧', -- '' 🎧 🎵 🎶 🎼 📻
   },
 }
 
@@ -38,7 +38,7 @@ local M = {
     vim.api.nvim_set_keymap(
       'n',
       '<leader>yd',
-      '<CMD>GetTable require("yt_audio")<CR>',
+      '<CMD>:lua require("yt_audio.yt_audio").debug()<CR>',
       { desc = 'show debug info', noremap = true, silent = true })
     -- stylua: ignore
     vim.api.nvim_set_keymap(
