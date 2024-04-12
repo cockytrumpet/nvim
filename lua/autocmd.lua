@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'dapui_scopes',
     'themes',
     'terminal',
+    'copilot-chat',
   },
   callback = function()
     require('ufo').detach()

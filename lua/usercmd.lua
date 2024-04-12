@@ -15,13 +15,17 @@ end, {})
 vim.api.nvim_create_user_command('GetTable', function(ctx)
   local cmd = 'lua=' .. ctx.args
   local lines = vim.split(vim.api.nvim_exec(cmd, true), '\n', { plain = true })
-  vim.cmd 'vnew'
-  vim.cmd 'setlocal wrap'
-  vim.api.nvim_set_option_value('filetype', 'lua', { buf = 0 })
-  vim.api.nvim_set_option_value('buflisted', false, { buf = 0 })
-  vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', { noremap = true, silent = true })
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-  vim.opt_local.modified = false
+  local col = vim.api.nvim_get_option_value('columns', {})
+  local newbuf = vim.api.nvim_create_buf(false, true)
+
+  vim.api.nvim_buf_set_lines(newbuf, 0, -1, false, lines)
+  vim.api.nvim_set_option_value('filetype', 'lua', { buf = newbuf })
+  vim.api.nvim_set_option_value('buflisted', false, { buf = newbuf })
+  vim.api.nvim_buf_set_keymap(newbuf, 'n', 'q', '<cmd>q<CR>', { noremap = true, silent = true })
+
+  local opts = { relative = 'editor', width = 33, height = 37, col = col, row = 1, anchor = 'NE', style = 'minimal', border = 'single' }
+  local win = vim.api.nvim_open_win(newbuf, true, opts)
+  vim.api.nvim_set_option_value('wrap', true, { win = win })
 end, { nargs = '+', complete = 'command' })
 
 ------------------ pytest TestOnSave ------------------
