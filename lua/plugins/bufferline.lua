@@ -1,6 +1,10 @@
+-- TODO: check out coke line as possible replacement
+
 local M = {
   'akinsho/bufferline.nvim',
-  version = '*',
+  -- version = '*',
+  enabled = false,
+  branch = 'main',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VeryLazy',
   config = function()

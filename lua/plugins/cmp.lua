@@ -41,6 +41,7 @@ local M = { -- Autocompletion
     -- Adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
+    'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
 
@@ -77,15 +78,15 @@ local M = { -- Autocompletion
         },
       },
       completion = {
-        completeopt = 'menu,menuone,noinsert,noselect',
-        -- completeopt = 'menu,menuone,noinsert,preview,noselect',
+        -- completeopt = 'menu,menuone,noinsert,noselect',
+        completeopt = 'menu,menuone,noinsert,preview,noselect',
         autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
         keyword_length = 1,
+        -- TODO: keyword_length isn't working for copilot...
       },
-
       experimental = {
-        --[[
-        ghost_text = {
+
+        --[[ ghost_text = {
           hl_group = 'Comment',
         },
 ]]
@@ -138,29 +139,29 @@ local M = { -- Autocompletion
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'nvim_lsp' },
-        { name = 'copilot', max_item_count = 2 },
-        { name = 'codeium', max_item_count = 2 },
-        { name = 'luasnip', max_item_count = 3 },
-        { name = 'buffer', max_item_count = 3 },
-        { name = 'path' },
-        { name = 'crates' },
+        { name = 'luasnip', priority = 3, max_item_count = 2 },
+        { name = 'nvim_lsp', priority = 3, max_item_count = 10 },
+        { name = 'nvim_lua', priority = 3, max_item_count = 5 },
+        { name = 'buffer', priority = 2, max_item_count = 2 },
+        { name = 'path', priority = 2 },
+        { name = 'crates', priority = 2 },
+        { name = 'codeium', max_item_count = 1 },
+        { name = 'copilot', max_item_count = 1 },
       },
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },
         expandable_indicator = true,
         format = function(entry, vim_item)
           local lspkind_ok, lspkind = pcall(require, 'lspkind')
+          lspkind.init {
+            symbol_map = {
+              Copilot = '',
+              Codeium = '',
+            },
+          }
           if not lspkind_ok then
             vim_item.kind = cmp_kinds[vim_item.kind] or ''
           else
-            local custom_icon = {
-              codeium = ' AI',
-            }
-            if entry.source.name == 'codeium' then
-              vim_item.kind = custom_icon.codeium
-            end
-
             return lspkind.cmp_format {
               menu = {
                 buffer = '[Buffer]',

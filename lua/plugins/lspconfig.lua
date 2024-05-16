@@ -115,6 +115,7 @@ local M = { -- LSP Configuration & Plugins
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('rustaceanvim.config.server').create_client_capabilities())
 
     --  Add any additional override configuration in the following tables. Available keys are:
     --  - cmd (table): Override the default command used to start the server
@@ -151,6 +152,9 @@ local M = { -- LSP Configuration & Plugins
               autoSearchPaths = true,
               diagnosticMode = 'openFilesOnly',
               useLibraryCodeForTypes = true,
+              autoImportCompletions = true,
+              typeCheckingMode = 'basic',
+              reportUnusedFunction = false,
             },
           },
           extraPaths = {
@@ -159,7 +163,6 @@ local M = { -- LSP Configuration & Plugins
         },
         single_file_support = true,
       },
-
       --[[
       pyright = {
         cmd = { 'pyright-langserver', '--stdio', '--pythonPath ', '/Users/adam/.pyenv/shims/python3' },
@@ -179,9 +182,8 @@ local M = { -- LSP Configuration & Plugins
             -- venv = "ml-3.10.13",
           },
         },
-        -- single_file = true,
+        single_file = true,
       },
-]]
       ruff_lsp = {
         -- organize imports disabled, since we are already using `isort` for that
         -- alternative, this can be enabled to make `organize imports`
@@ -194,7 +196,7 @@ local M = { -- LSP Configuration & Plugins
           client.server_capabilities.hoverProvider = false
         end,
       },
-
+]]
       gopls = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },

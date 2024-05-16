@@ -183,6 +183,7 @@ local M = {
             border = {
               padding = { 0, 0 },
             },
+            scrollbar = false,
           },
         },
         override = {
@@ -227,7 +228,6 @@ local M = {
           win_options = {
             winhighlight = { Normal = 'Normal', FloatBorder = 'FloatBorder' },
           },
-          scrollbar = false,
         },
         mini = {
           zindex = 100,

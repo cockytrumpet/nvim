@@ -16,7 +16,7 @@ local dev = {
 }
 
 local live = {
-  'cockytrumpet/YtAudio',
+  'cockytrumpet/yt_audio.nvim',
   opts = {
     notifications = false,
     volume = 25,

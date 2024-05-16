@@ -8,6 +8,7 @@ vim.cmd [[
 local M = {
   'nvim-tree/nvim-tree.lua',
   event = 'VeryLazy',
+  enabled = false,
   init = function()
     vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<CR>', { desc = 'toggle nvimtree' })
     vim.g.loaded_netrw = 1

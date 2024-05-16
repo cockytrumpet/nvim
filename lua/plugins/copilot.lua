@@ -1,6 +1,9 @@
 local M = {
   'zbirenbaum/copilot.lua',
   event = 'InsertEnter',
+  init = function()
+    vim.keymap.set('n', '<leader>gc', '<cmd>Copilot toggle<cr>', { noremap = true, silent = true, desc = 'copilot toggle' })
+  end,
   dependencies = {
     {
       'zbirenbaum/copilot-cmp',
@@ -11,9 +14,13 @@ local M = {
   },
   config = function()
     require('copilot').setup {
+      suggestion = { enabled = false, auto_trigger = false },
+      panel = { enabled = false },
+    }--[[
+    require('copilot').setup {
       suggestion = {
-        enabled = true,
-        auto_trigger = true,
+        enabled = false,
+        auto_trigger = false,
         keymap = {
           accept = '<M-\\>',
           accept_word = false,
@@ -40,6 +47,7 @@ local M = {
         },
       },
     }
+]]
   end,
 }
 

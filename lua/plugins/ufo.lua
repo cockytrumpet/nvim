@@ -19,7 +19,12 @@ local M = {
     vim.keymap.set('n', 'zm', function()
       require('ufo').closeFoldsWith()
     end, { desc = 'close all folds with' })
-    vim.keymap.set('n', '<leader>k', function()
+    vim.keymap.set('n', 'K', function()
+      local session = require('dap').session()
+      if session then
+        require('dap.ui.widgets').hover()
+        return
+      end
       local winid = require('ufo').peekFoldedLinesUnderCursor()
       if not winid then
         vim.lsp.buf.hover()

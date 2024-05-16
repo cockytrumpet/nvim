@@ -7,6 +7,7 @@ local M = {
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-vim-test',
+    'nvim-treesitter/nvim-treesitter',
   },
   config = function()
     local neotest_ns = vim.api.nvim_create_namespace 'neotest'
@@ -28,7 +29,12 @@ local M = {
           framework = 'scalatest',
         },
         require 'neotest-python' {
-          dap = { justMyCode = false },
+          dap = {
+            justMyCode = false,
+            console = 'integratedTerminal',
+          },
+          args = { '--log-level', 'DEBUG', '--quiet' },
+          runner = 'pytest',
         },
         require 'neotest-plenary',
         require 'neotest-vim-test' {

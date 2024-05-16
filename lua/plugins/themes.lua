@@ -1,11 +1,10 @@
 -- other themes
 local themes = {
-  { 'sainnhe/everforest' },
-  { 'rose-pine/neovim' },
-  { 'ribru17/bamboo.nvim' },
-  { 'shaunsingh/nord.nvim' },
-  { 'folke/tokyonight.nvim' },
-  { 'EdenEast/nightfox.nvim' },
-  { 'olimorris/onedarkpro.nvim' },
+  { 'rose-pine/neovim', event = 'VeryLazy' },
+  { 'ribru17/bamboo.nvim', event = 'VeryLazy' },
+  { 'shaunsingh/nord.nvim', event = 'VeryLazy' },
+  { 'folke/tokyonight.nvim', event = 'VeryLazy' },
+  { 'EdenEast/nightfox.nvim', event = 'VeryLazy' },
+  { 'olimorris/onedarkpro.nvim', event = 'VeryLazy' },
 }
 return themes

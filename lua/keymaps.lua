@@ -6,10 +6,12 @@ vim.keymap.set('n', '<Esc>', function()
   vim.cmd 'Noice dismiss'
 end)
 vim.keymap.set('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, replace_keycodes = false, desc = 'Visually select changed text' })
-
+--[[
 vim.keymap.set('n', '<leader>x', function()
   utils.close_current_buffer()
 end, { desc = 'close buffer' })
+]]
+vim.keymap.set('n', '<leader>x', '<CMD>bd<CR>', { desc = 'close buffer' })
 
 vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'copy whole file' })
 vim.keymap.set('n', '<leader>tp', '<CMD>tabp<CR>', { desc = 'previous tab' })
@@ -58,7 +60,7 @@ vim.keymap.set('n', '<leader>a', function()
   }
 end, { desc = 'auto-format file' })
 vim.keymap.set('n', '<leader>i', function()
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Inlay Hints' })
 
 -- [[ colorscheme ]]

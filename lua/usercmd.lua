@@ -8,8 +8,7 @@ vim.api.nvim_create_user_command('Update', function()
     vim.cmd(command)
   end
   require('lazy').sync()
-  -- require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
-  require('nvterm.terminal').send('brew update;brew upgrade --fetch-HEAD;pipupall', 'vertical')
+  require('nvterm.terminal').send('bubc;pipupall;bob update --all', 'vertical')
 end, {})
 
 vim.api.nvim_create_user_command('GetTable', function(ctx)

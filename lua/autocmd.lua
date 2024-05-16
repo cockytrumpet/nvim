@@ -99,7 +99,7 @@ vim.api.nvim_create_autocmd('VimResized', {
   command = 'tabdo wincmd =',
 })
 
--- Nvimtree open file on creation
+--[[ -- Nvimtree open file on creation
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()
     require('nvim-tree.api').events.subscribe('FileCreated', function(file)
@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     end)
   end,
 })
-
+]]
 -- Don't auto comment new line
 vim.api.nvim_create_autocmd('BufEnter', {
   command = [[set formatoptions-=cro]],
