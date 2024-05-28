@@ -1,6 +1,6 @@
 local M = {
   'NeogitOrg/neogit',
-  branch = 'nightly',
+  branch = 'master',
   dependencies = {
     'nvim-lua/plenary.nvim', -- required
     'nvim-telescope/telescope.nvim', -- optional

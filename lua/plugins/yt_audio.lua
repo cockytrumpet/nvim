@@ -18,9 +18,9 @@ local dev = {
 local live = {
   'cockytrumpet/yt_audio.nvim',
   opts = {
-    notifications = false,
+    notifications = true,
     volume = 25,
-    icon = '🎧', -- '' 🎧 🎵 🎶 🎼 📻
+    icon = '📻', -- '' 🎧 🎵 🎶 🎼 📻
   },
 }
 

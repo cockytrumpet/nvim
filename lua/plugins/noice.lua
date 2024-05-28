@@ -150,6 +150,10 @@ local M = {
         hover = {
           enabled = true,
           silent = true,
+          size = {
+            max_height = 10,
+            max_width = 40,
+          },
         },
         progress = {
           enabled = false,
@@ -171,7 +175,7 @@ local M = {
               width = 'auto',
             },
             win_options = {
-              wrap = false,
+              wrap = true,
             },
           },
         },
@@ -197,6 +201,12 @@ local M = {
       },
       ---@type NoiceConfigViews
       views = {
+        hover = {
+          size = {
+            max_height = 20,
+            max_width = 70, -- TODO: get 80% to work
+          },
+        },
         cmdline_popup = {
           position = {
             row = 5,

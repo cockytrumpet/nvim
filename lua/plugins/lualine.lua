@@ -78,7 +78,7 @@ local M = {
   'nvim-lualine/lualine.nvim',
   lazy = false,
   priority = 999,
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'AndreM222/copilot-lualine' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' }, --, 'AndreM222/copilot-lualine' },
   config = function()
     local lualine = require 'lualine'
     local lazy_status = require 'lazy.status'
@@ -116,32 +116,32 @@ local M = {
             cond = lazy_status.has_updates,
             color = { fg = '#ff9e64' },
           },
-          {
-            'copilot',
-            symbols = {
-              status = {
-                icons = {
-                  enabled = ' ',
-                  sleep = ' ',
-                  disabled = ' ',
-                  warning = ' ',
-                  unknown = ' ',
-                },
-                hl = getHL(),
-                -- hl = {
-                --   enabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow4'), 'fg')]], --'#94e2d5',
-                --   sleep = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow3'), 'fg')]], --'#AEB7D0',
-                --   disabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow2'), 'fg')]], --'#6272A4',
-                --   warning = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow1'), 'fg')]], --'#fab387',
-                --   unknown = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow6'), 'fg')]], --'#f38ba8',
-                -- },
-              },
-              spinners = require('copilot-lualine.spinners').dots,
-              spinner_color = '#6272A4',
-            },
-            show_colors = true,
-            show_loading = true,
-          },
+          -- {
+          --   'copilot',
+          --   symbols = {
+          --     status = {
+          --       icons = {
+          --         enabled = ' ',
+          --         sleep = ' ',
+          --         disabled = ' ',
+          --         warning = ' ',
+          --         unknown = ' ',
+          --       },
+          --       hl = getHL(),
+          --       -- hl = {
+          --       --   enabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow4'), 'fg')]], --'#94e2d5',
+          --       --   sleep = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow3'), 'fg')]], --'#AEB7D0',
+          --       --   disabled = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow2'), 'fg')]], --'#6272A4',
+          --       --   warning = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow1'), 'fg')]], --'#fab387',
+          --       --   unknown = vim.cmd [[synIDattr(synIDtrans(hlID 'Rainbow6'), 'fg')]], --'#f38ba8',
+          --       -- },
+          --     },
+          --     spinners = require('copilot-lualine.spinners').dots,
+          --     spinner_color = '#6272A4',
+          --   },
+          --   show_colors = true,
+          --   show_loading = true,
+          -- },
           { lsp, color = { fg = '#89b4fa' } },
         },
         lualine_y = { 'filetype' },

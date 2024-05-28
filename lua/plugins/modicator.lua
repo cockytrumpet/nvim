@@ -1,6 +1,6 @@
 local M = {
   'mawkler/modicator.nvim',
-  enabled = false,
+  -- enabled = false,
   event = 'VeryLazy',
   init = function()
     vim.o.cursorline = true

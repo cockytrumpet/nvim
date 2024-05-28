@@ -2,6 +2,7 @@ local M = {
   'hiphish/rainbow-delimiters.nvim',
   event = 'BufReadPost',
   config = function()
+    -- This module contains a number of default definitions
     local rainbow_delimiters = require 'rainbow-delimiters'
 
     vim.g.rainbow_delimiters = {
@@ -12,6 +13,10 @@ local M = {
       query = {
         [''] = 'rainbow-delimiters',
         lua = 'rainbow-blocks',
+      },
+      priority = {
+        [''] = 110,
+        lua = 210,
       },
       highlight = {
         'RainbowDelimiterRed',

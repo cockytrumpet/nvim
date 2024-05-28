@@ -62,12 +62,9 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'noice', 'neotest-output', 'neotest-summary', 'neotest-output-panel', 'help' },
   callback = function()
-    if vim.bo.buftype == 'terminal' then
-      vim.o.scrolloff = 0
-      vim.o.number = false
-      vim.o.relativenumber = false
-      vim.cmd 'startinsert | 1'
-    end
+    vim.o.scrolloff = 0
+    vim.o.number = false
+    vim.o.relativenumber = false
   end,
 })
 
@@ -141,7 +138,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'dap-float',
     'null-ls-info',
     'empty',
-    'neotest-output',
+    -- 'neotest-output',
     'neotest-summary',
     'neotest-output-panel',
     'fugitive',

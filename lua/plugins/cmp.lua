@@ -85,11 +85,9 @@ local M = { -- Autocompletion
         -- TODO: keyword_length isn't working for copilot...
       },
       experimental = {
-
-        --[[ ghost_text = {
+        ghost_text = {
           hl_group = 'Comment',
         },
-]]
       },
       snippet = {
         expand = function(args)
@@ -139,14 +137,14 @@ local M = { -- Autocompletion
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'luasnip', priority = 3, max_item_count = 2 },
-        { name = 'nvim_lsp', priority = 3, max_item_count = 10 },
-        { name = 'nvim_lua', priority = 3, max_item_count = 5 },
+        { name = 'luasnip', priority = 1, max_item_count = 2 },
+        { name = 'nvim_lsp', priority = 1, max_item_count = 10 },
+        { name = 'nvim_lua', priority = 1, max_item_count = 5 },
         { name = 'buffer', priority = 2, max_item_count = 2 },
         { name = 'path', priority = 2 },
         { name = 'crates', priority = 2 },
-        { name = 'codeium', max_item_count = 1 },
-        { name = 'copilot', max_item_count = 1 },
+        { name = 'codeium', priority = 3, max_item_count = 2 },
+        -- { name = 'copilot', max_item_count = 3 },
       },
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },

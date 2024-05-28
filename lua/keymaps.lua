@@ -72,3 +72,6 @@ end, { desc = 'themes', silent = true })
 
 -- [[ Plugin specific ]]
 vim.keymap.set('n', '<leader>gg', '<CMD>Neogit<CR>', { desc = 'Neogit' })
+vim.keymap.set('n', '<leader>S', function()
+  require('mini.splitjoin').toggle()
+end, { desc = 'split/join' })

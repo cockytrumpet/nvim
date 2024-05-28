@@ -4,11 +4,33 @@ local M = {
   dependencies = {
     'stevanmilic/neotest-scala',
     'antoinemadec/FixCursorHold.nvim',
+    'nvim-neotest/neotest-go',
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-vim-test',
     'nvim-treesitter/nvim-treesitter',
   },
+  init = function()
+    vim.keymap.set('n', '<leader>ns', '<cmd>Neotest summary<cr>', { desc = 'summary window' })
+    vim.keymap.set('n', '<leader>no', function()
+      require('neotest').output.open()
+    end, { desc = 'test output' })
+    vim.keymap.set('n', '<leader>nr', function()
+      require('neotest').run.run()
+    end, { desc = 'run nearest' })
+    vim.keymap.set('n', '<leader>nf', function()
+      require('neotest').run.run(vim.fn.expand '%')
+    end, { desc = 'run file' })
+    vim.keymap.set('n', '<leader>nd', function()
+      require('neotest').run.run { strategy = 'dap' }
+    end, { desc = 'debug nearest' })
+    vim.keymap.set('n', '<leader>na', function()
+      require('neotest').run.attach()
+    end, { desc = 'attach nearest' })
+    vim.keymap.set('n', '<leader>nw', function()
+      require('neotest').watch.toggle(vim.fn.expand '%')
+    end, { desc = 'watch file' })
+  end,
   config = function()
     local neotest_ns = vim.api.nvim_create_namespace 'neotest'
 
@@ -23,6 +45,7 @@ local M = {
 
     require('neotest').setup {
       adapters = {
+        require 'neotest-go',
         -- require("neotest-rust"),
         require 'neotest-scala' {
           runner = 'sbt',
