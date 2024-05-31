@@ -1,8 +1,11 @@
 local get_path_string = function()
-  local f = io.open('/Users/adam/.pyenv/version', 'r')
-  local version = f:read '*a'
-  f:close()
-  return string.format('~/.pyenv/versions/%s/lib/%s/site-packages/', version, string.sub(version, 1, 4))
+  local f = io.open('~/.pyenv/version', 'r')
+  if f ~= nil then
+    local version = f:read '*a'
+    f:close()
+    return string.format('~/.pyenv/versions/%s/lib/%s/site-packages/', version, string.sub(version, 1, 4))
+  end
+  return ''
 end
 
 local M = {
