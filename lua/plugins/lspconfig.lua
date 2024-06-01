@@ -27,7 +27,7 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
--- require('lspconfig.ui.windows').default_options.border = 'single'
+require('lspconfig.ui.windows').default_options.border = 'single'
 
 local M = { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
