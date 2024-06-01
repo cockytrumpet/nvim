@@ -123,6 +123,14 @@ local M = { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+    require('lspconfig').clangd.setup {
+      cmd = {
+        '/usr/bin/clangd-18',
+        '--offset-encoding=utf-16',
+      },
+    }
+
     local servers = {
       -- clangd = {},
       -- gopls = {},
@@ -136,12 +144,6 @@ local M = { -- LSP Configuration & Plugins
       --
       -- If you only have simple needs for typescript, then you can probably just use tsserver
       -- tsserver = {},
-      clangd = {
-        cmd = {
-          'clangd',
-          '--offset-encoding=utf-16',
-        },
-      },
 
       basedpyright = {
         cmd = { 'basedpyright-langserver', '--stdio' },
