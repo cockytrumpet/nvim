@@ -1,3 +1,7 @@
+-- Prevent LSP from overwriting treesitter color settings
+-- https://github.com/NvChad/NvChad/issues/1907
+vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+
 local signs = {
   Error = '',
   Warn = '',
@@ -11,9 +15,9 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config {
-  virtual_lines = false,
+  -- virtual_lines = false,
   virtual_text = {
-    source = false,
+    -- source = false,
     prefix = '■',
   },
   -- virtual_text = false,
@@ -23,8 +27,11 @@ vim.diagnostic.config {
   },
   signs = true,
   underline = false,
-  update_in_insert = false,
+  update_in_insert = true,
   severity_sort = true,
+  on_ready = function()
+    -- vim.cmd 'highlight DiagnosticVirtualText guibg=NONE'
+  end,
 }
 
 require('lspconfig.ui.windows').default_options.border = 'single'
@@ -37,7 +44,7 @@ local M = { -- LSP Configuration & Plugins
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    'folke/neodev.nvim',
+    'folke/lazydev.nvim',
     {
       'j-hui/fidget.nvim',
       event = 'VeryLazy',
@@ -240,6 +247,9 @@ local M = { -- LSP Configuration & Plugins
             -- diagnostics = { disable = { 'missing-fields' } },
             diagnostics = {
               globals = { 'vim' },
+              disable = {
+                'missing-fields',
+              },
             },
             hint = {
               enable = true,
