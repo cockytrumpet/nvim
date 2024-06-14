@@ -79,7 +79,7 @@ local M = { -- Autocompletion
       },
       completion = {
         -- completeopt = 'menu,menuone,noinsert,noselect',
-        completeopt = 'menu,menuone,noinsert,preview,noselect',
+        completeopt = 'menu,menuone,noinsert,preview,noselect,fuzzy',
         autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
         keyword_length = 1,
         -- TODO: keyword_length isn't working for copilot...
