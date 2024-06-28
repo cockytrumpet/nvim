@@ -17,7 +17,7 @@ end
 vim.diagnostic.config {
   -- virtual_lines = false,
   virtual_text = {
-    -- source = false,
+    source = false,
     prefix = '■',
   },
   -- virtual_text = false,
