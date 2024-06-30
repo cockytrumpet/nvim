@@ -1,11 +1,11 @@
 -- [[ Setting options ]]
--- See `:help vim.opt`
 vim.g.lua_snippets_path = os.getenv 'HOME' .. '/.config/nvim/lua/snippets'
 -- vim.g.vscode_snippets_path = os.getenv 'HOME' .. '~/.config/nvim/lua/snippets'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.python3_host_prog = '/Users/adam/.pyenv/versions/neovim/bin/python'
 vim.opt.backup = false -- creates a backup file
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
@@ -39,7 +39,6 @@ vim.opt.relativenumber = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 8
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
--- vim.opt.sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize'
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.shortmess:append 'IAc' -- Disable asking when editing file with swapfile.
 vim.opt.showmode = false
@@ -61,13 +60,8 @@ vim.opt.whichwrap:append '<,>,[,],h,l'
 vim.opt.winhighlight = 'WinSeparator:FloatBorder'
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
-
+vim.opt.smoothscroll = true
 vim.cmd 'set rtp+=/opt/homebrew/opt/fzf'
--- vim.cmd 'set completeopt+=fuzzy'
-
-if vim.fn.has 'nvim-0.10' == 1 then
-  vim.opt.smoothscroll = true
-end
 
 if vim.fn.executable 'rg' then
   vim.opt.grepprg = 'rg --vimgrep'

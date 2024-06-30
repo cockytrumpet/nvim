@@ -34,8 +34,6 @@ vim.diagnostic.config {
   end,
 }
 
-require('lspconfig.ui.windows').default_options.border = 'single'
-
 local M = { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -48,17 +46,10 @@ local M = { -- LSP Configuration & Plugins
     {
       'j-hui/fidget.nvim',
       event = 'VeryLazy',
-      opts = {
-        integration = {
-          -- turn off nvim-tree?
-          ['nvim-tree'] = {
-            enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-          },
-        },
-      },
     },
   },
   config = function()
+    require('lspconfig.ui.windows').default_options.border = 'single'
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
@@ -315,7 +306,6 @@ local M = { -- LSP Configuration & Plugins
     })
 
     -- Ensure the servers and tools above are installed
-    -- require('neodev').setup()
     require('mason').setup { ui = { border = 'rounded' } }
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
     require('mason-lspconfig').setup {
