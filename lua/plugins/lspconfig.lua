@@ -15,19 +15,20 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config {
-  -- virtual_lines = false,
-  virtual_text = {
-    source = false,
-    prefix = '■',
-  },
   -- virtual_text = false,
+
+  virtual_text = {
+    source = 'if_many',
+    prefix = '●',
+  },
+
   float = {
     source = 'if_many',
     border = 'rounded',
   },
   signs = true,
-  underline = false,
-  update_in_insert = true,
+  underline = true,
+  update_in_insert = false,
   severity_sort = true,
   on_ready = function()
     -- vim.cmd 'highlight DiagnosticVirtualText guibg=NONE'

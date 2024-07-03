@@ -47,6 +47,20 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous diagnosti
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next diagnostic message' })
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'show diagnostic error messages' })
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
+
+local function preview_location_callback(_, result)
+  if result == nil or vim.tbl_isempty(result) then
+    return nil
+  end
+  vim.lsp.util.preview_location(result[1])
+end
+
+function PeekDefinition()
+  local params = vim.lsp.util.make_position_params()
+  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+end
+
+vim.keymap.set('n', 'gp', PeekDefinition, { desc = 'peek definition' })
 --[[
 vim.keymap.set('n', '<leader>rf', function()
   _G.run_code()
