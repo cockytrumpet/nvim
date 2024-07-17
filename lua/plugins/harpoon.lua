@@ -2,9 +2,10 @@ local M = {
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
+    event = 'VeryLazy',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    init = function()
-      local harpoon = require 'harpoon'
+    config = function()
+      local harpoon = require('harpoon').setup {}
 
       vim.keymap.set('n', '<leader>ht', function()
         harpoon:list():add()
@@ -33,7 +34,6 @@ local M = {
         harpoon:list():next()
       end)
     end,
-    config = true,
   },
 }
 
