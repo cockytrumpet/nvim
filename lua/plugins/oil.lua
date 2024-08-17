@@ -38,6 +38,10 @@ local M = {
       view_options = {
         show_hidden = true,
       },
+      lsp_file_methods = {
+        timeout_ms = 1000,
+        autosave_changes = 'unmodified',
+      },
     }
   end,
 }
