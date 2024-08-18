@@ -304,6 +304,7 @@ local M = { -- LSP Configuration & Plugins
 
       'dockerfile-language-server',
       'yaml-language-server',
+      'gopls',
     })
 
     -- Ensure the servers and tools above are installed
