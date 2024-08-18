@@ -5,7 +5,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.python3_host_prog = '/Users/adam/.pyenv/versions/neovim/bin/python'
 vim.opt.backup = false -- creates a backup file
 vim.opt.breakindent = true
 vim.opt.clipboard = 'unnamedplus'
@@ -61,7 +60,13 @@ vim.opt.winhighlight = 'WinSeparator:FloatBorder'
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.smoothscroll = true
-vim.cmd 'set rtp+=/opt/homebrew/opt/fzf'
+
+if vim.loop.os_uname().sysname == 'Darwin' then
+  vim.cmd 'set rtp+=/opt/homebrew/opt/fzf'
+  vim.g.python3_host_prog = '/Users/adam/.pyenv/versions/neovim/bin/python'
+else
+  vim.cmd 'set rtp+=/usr/bin/fzf'
+end
 
 if vim.fn.executable 'rg' then
   vim.opt.grepprg = 'rg --vimgrep'

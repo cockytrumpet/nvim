@@ -309,7 +309,11 @@ local M = { -- LSP Configuration & Plugins
 
     -- Ensure the servers and tools above are installed
     require('mason').setup { ui = { border = 'rounded' } }
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    require('mason-tool-installer').setup {
+      ensure_installed = ensure_installed,
+      auto_update = true,
+      run_on_start = true,
+    }
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
