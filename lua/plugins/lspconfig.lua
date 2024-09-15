@@ -114,6 +114,11 @@ local M = { -- LSP Configuration & Plugins
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
     -- capabilities = vim.tbl_deep_extend('force', capabilities, require('rustaceanvim.config.server').create_client_capabilities())
 
     --  Add any additional override configuration in the following tables. Available keys are:
@@ -134,7 +139,7 @@ local M = { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- If you only have simple needs for typescript, then you can probably just use tsserver
-      -- tsserver = {},
+      -- ts_ls = {},
       clangd = {
         cmd = {
           'clangd',
