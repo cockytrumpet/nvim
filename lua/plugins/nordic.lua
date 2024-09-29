@@ -13,7 +13,7 @@ local M = {
       -- Enable italic comments.
       italic_comments = true,
       -- Enable general editor background transparency.
-      transparent_bg = false,
+      transparent = false,
       -- Enable brighter float border.
       bright_border = false,
       -- Reduce the overall amount of blue in the theme (diverges from base Nord).
@@ -21,7 +21,7 @@ local M = {
       -- Swap the dark background with the normal one.
       swap_backgrounds = false,
       -- Override the styling of any highlight group.
-      override = {
+      on_highlight = {
         FoldColumn = {
           bg = '',
         },
