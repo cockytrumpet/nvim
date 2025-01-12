@@ -69,4 +69,6 @@ require('lazy').setup({
 
 require 'autocmd' -- lua.autocmd
 require 'usercmd' -- lua.usercmd
+require 'lsp.jdtls'
+vim.deprecate = function() end
 -- vim: ts=2 sts=2 sw=2 et
