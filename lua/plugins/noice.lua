@@ -159,7 +159,8 @@ local M = {
           },
         },
         progress = {
-          enabled = false,
+          enabled = true,
+          view = 'mini',
         },
         signature = {
           enabled = true,
@@ -204,6 +205,9 @@ local M = {
       },
       ---@type NoiceConfigViews
       views = {
+        -- notify = {
+        --   replace = true,
+        -- },
         hover = {
           size = {
             max_height = 20,

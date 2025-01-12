@@ -45,10 +45,6 @@ local M = { -- LSP Configuration & Plugins
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'folke/lazydev.nvim',
-    {
-      'j-hui/fidget.nvim',
-      event = 'VeryLazy',
-    },
   },
   config = function()
     require('lspconfig.ui.windows').default_options.border = 'single'
