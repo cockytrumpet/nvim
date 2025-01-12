@@ -41,10 +41,15 @@ local M = {
     local opts = {
       -- INFO: Uncomment to use treeitter as fold provider, otherwise nvim lsp is used
       provider_selector = function(bufnr, filetype, buftype)
-        return { 'treesitter', 'indent' }
+        -- return { 'treesitter', 'indent' }
       end,
       open_fold_hl_timeout = 400,
-      -- close_fold_kinds_for_ft = { default = {'imports', 'comment'}, },
+      close_fold_kinds_for_ft = {
+        -- default = { 'imports', 'comment' },
+        default = {},
+        json = { 'array' },
+        c = { 'comment', 'region' },
+      },
       preview = {
         win_config = {
           border = { '', '─', '', '', '', '─', '', '' },
@@ -96,9 +101,9 @@ local M = {
     require('ufo').setup(opts)
 
     -- buffer scope handler
-    -- will override global handler if it is existed
-    local bufnr = vim.api.nvim_get_current_buf()
-    require('ufo').setFoldVirtTextHandler(bufnr, handler)
+    -- will override global handler if it exists
+    -- local bufnr = vim.api.nvim_get_current_buf()
+    -- require('ufo').setFoldVirtTextHandler(bufnr, handler)
   end,
 }
 

@@ -100,6 +100,9 @@ local M = {
             kind = '',
             any = {
 
+              -- nvim nightly nagging
+              { find = 'Defining diagnostic signs with :sign-define or sign_define() is deprecated' },
+
               -- Edit
               { find = '%d+ less lines' },
               { find = '%d+ fewer lines' },

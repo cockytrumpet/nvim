@@ -48,6 +48,13 @@ local M = {
             return { binary }
           end,
         },
+        java = {
+          command = function()
+            local jshellAvailable = vim.fn.executable 'jshell' == 1
+            local binary = jshellAvailable and 'jshell' or 'java'
+            return { binary }
+          end,
+        },
       },
     },
   },

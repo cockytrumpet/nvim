@@ -1,6 +1,7 @@
 -- Prevent LSP from overwriting treesitter color settings
 -- https://github.com/NvChad/NvChad/issues/1907
-vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+-- vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+vim.hl.priorities.semantic_tokens = 95
 
 local signs = {
   Error = '',
@@ -119,6 +120,47 @@ local M = { -- LSP Configuration & Plugins
       dynamicRegistration = false,
       lineFoldingOnly = true,
     }
+    -- Metals setup
+    -- local cmd = vim.cmd
+    local metals_config = require('metals').bare_config()
+
+    metals_config.settings = {
+      showImplicitArguments = true,
+      excludedPackages = { 'akka.actor.typed.javadsl', 'com.github.swagger.akka.javadsl' },
+      showInferredType = true,
+      superMethodLensesEnabled = true,
+      enableSemanticHighlighting = false,
+      showImplicitConversionsAndClasses = true,
+    }
+
+    -- *READ THIS*
+    -- I *highly* recommend setting statusBarProvider to true, however if you do,
+    -- you *have* to have a setting to display this in your statusline or else
+    -- you'll not see any messages from metals. There is more info in the help
+    -- docs about this
+    -- metals_config.init_options.statusBarProvider = "on"
+
+    -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+    metals_config.capabilities = capabilities -- require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+    ---@diagnostic disable-next-line: unused-local
+    metals_config.on_attach = function(client, bufnr)
+      require('metals').setup_dap()
+    end
+
+    -- Autocmd that will actually be in charging of starting the whole thing
+    local nvim_metals_group = vim.api.nvim_create_augroup('nvim-metals', { clear = true })
+    vim.api.nvim_create_autocmd('FileType', {
+      -- NOTE: You may or may not want java included here. You will need it if you
+      -- want basic Java support but it may also conflict if you are using
+      -- something like nvim-jdtls which also works on a java filetype autocmd.
+      pattern = { 'scala', 'sbt' }, -- 'java'
+      callback = function()
+        require('metals').initialize_or_attach(metals_config)
+      end,
+      group = nvim_metals_group,
+    })
+
     -- capabilities = vim.tbl_deep_extend('force', capabilities, require('rustaceanvim.config.server').create_client_capabilities())
 
     --  Add any additional override configuration in the following tables. Available keys are:
@@ -266,6 +308,8 @@ local M = { -- LSP Configuration & Plugins
         organize_imports_on_format = true,
         enable_import_completion = true,
       },
+
+      -- jdtls = {},
     }
 
     -- You can add other tools here that you want Mason to install
@@ -295,6 +339,11 @@ local M = { -- LSP Configuration & Plugins
       'debugpy',
       'isort',
       'pylint',
+
+      -- Java
+      'jdtls',
+      'java-debug-adapter',
+      'java-test',
 
       -- Json
       'jsonlint',
@@ -326,11 +375,14 @@ local M = { -- LSP Configuration & Plugins
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          if server_name ~= 'jdtls' then
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end
         end,
       },
     }
+    require('ufo').setup()
   end,
 }
 

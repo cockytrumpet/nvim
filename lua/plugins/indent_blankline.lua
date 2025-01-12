@@ -21,7 +21,7 @@ local M = {
     },
     scope = {
       -- Rely on treesitter, bad performance
-      enabled = false,
+      enabled = true,
       highlight = {
         'RainbowDelimiterRed',
         'RainbowDelimiterYellow',

@@ -1,9 +1,14 @@
 local M = {
   'nvim-neotest/neotest',
-  ft = { 'python', 'c', 'cpp', 'rust', 'go' },
+  ft = { 'python', 'c', 'cpp', 'go', 'java' },
   dependencies = {
+    'nvim-neotest/nvim-nio',
     'stevanmilic/neotest-scala',
     'antoinemadec/FixCursorHold.nvim',
+    {
+      'rcasia/neotest-java',
+      ft = { 'java' },
+    },
     'nvim-neotest/neotest-go',
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-plenary',
@@ -45,8 +50,9 @@ local M = {
 
     require('neotest').setup {
       adapters = {
+        require 'neotest-java',
         require 'neotest-go',
-        -- require("neotest-rust"),
+        -- require 'neotest-rust',
         require 'neotest-scala' {
           runner = 'sbt',
           framework = 'scalatest',

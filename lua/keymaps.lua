@@ -17,6 +17,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-c>', '<cmd> %y+ <CR>', { desc = 'copy whole fil
 vim.keymap.set('n', '<leader>tp', '<CMD>tabp<CR>', { desc = 'previous tab' })
 vim.keymap.set('n', '<leader>tn', '<CMD>$tabnew<CR>', { desc = 'new tab' })
 vim.keymap.set('n', '<leader>tc', '<CMD>tabc<CR>', { desc = 'close tab' })
+vim.keymap.set('n', '<leader>tt', '<CMD>Floaterminal<CR>', { desc = 'open terminal' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'exit terminal mode' })
 

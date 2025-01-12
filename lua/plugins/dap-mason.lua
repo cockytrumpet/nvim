@@ -2,7 +2,18 @@ local M = {
   'jay-babu/mason-nvim-dap.nvim',
   event = 'VeryLazy',
   init = function()
-    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+    -- vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpoint', {
+      text = '🔴',
+      texthl = 'DapBreakpointSymbol',
+      linehl = 'DapBreakpoint',
+      numhl = 'DapBreakpoint',
+    })
+    vim.fn.sign_define('DapStopped', {
+      texthl = 'DapStoppedSymbol',
+      linehl = 'CursorLine',
+      numhl = 'DapBreakpoint',
+    })
   end,
   config = function()
     local dap = require 'dap'
@@ -131,6 +142,15 @@ local M = {
         },
       },
     }
+
+    --[[ dap.configurations.java = {
+      {
+        type = 'java',
+        request = 'launch',
+        name = 'Launch Java Program',
+      },
+    }
+]]
   end,
   dependencies = {
     'williamboman/mason.nvim',
@@ -163,7 +183,7 @@ local M = {
             end
           end,
 
-          virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+          virt_text_pos = 'inline', --vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
 
           all_frames = false,
           virt_lines = false,
