@@ -102,6 +102,8 @@ local M = { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'git_file_history')
     pcall(require('telescope').load_extension, 'glyph')
 
+    require('config.telescope.multigrep').setup()
+
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>gh', '<CMD>Telescope git_file_history<CR>', { desc = 'file history' })
