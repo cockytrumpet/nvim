@@ -35,6 +35,7 @@ local M = {
         node_type = {
           lua = { 'return_statement', 'table_constructor' },
           python = { 'function_definition', 'class_definition', 'for_statement', 'while_statement' },
+          java = { 'function_definition', 'class_definition' },
         },
       },
     },

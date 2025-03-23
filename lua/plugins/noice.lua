@@ -53,14 +53,11 @@ local M = {
         enabled = true, -- enables the Noice popupmenu UI
         backend = 'nui', -- backend to use to show regular cmdline completions
       },
+      redirect = {
+        view = 'mini',
+        filter = { event = 'lsp', kind = 'message' },
+      },
       routes = {
-        -- shows '@recording' in a notification
-        --[[
-        {
-          view = 'notify',
-          filter = { event = 'msg_showmode' },
-        },
-]]
         {
           filter = {
             event = 'lsp',
@@ -87,6 +84,7 @@ local M = {
               { find = 'Highlight group' },
               { find = 'no manual entry for' },
               { find = 'not have parser for' },
+              { find = 'position_encoding' },
 
               -- ts
               { find = '_ts_parse_query' },
@@ -160,7 +158,15 @@ local M = {
         },
         progress = {
           enabled = true,
+          format = 'lsp_progress',
+          format_done = 'lsp_progress_done',
+          throttle = 1000 / 30, -- frequency to update lsp progress message
           view = 'mini',
+        },
+        message = {
+          enabled = true,
+          view = 'mini',
+          opts = {},
         },
         signature = {
           enabled = true,

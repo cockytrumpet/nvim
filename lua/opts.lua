@@ -26,6 +26,7 @@ vim.opt.inccommand = 'split'
 vim.opt.inccommand = 'split'
 vim.opt.iskeyword:append '-'
 vim.opt.laststatus = 3
+vim.g.lazyvim_blink_main = true
 vim.opt.lazyredraw = false -- Won't be redrawn while executing macros register and other commands.
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -48,7 +49,7 @@ vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false -- creates a swapfile
--- vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.tabstop = 4
 vim.opt.termguicolors = true -- Enables 24-bit RGB color in the TUI
 vim.opt.textwidth = 80
 vim.opt.timeoutlen = 500

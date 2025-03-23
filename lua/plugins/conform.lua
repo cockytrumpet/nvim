@@ -4,8 +4,11 @@ local M = { -- Autoformat
   opts = {
     notify_on_error = false,
     format_on_save = {
+      lsp_format = 'fallback',
       timeout_ms = 500,
-      lsp_fallback = true,
+    },
+    default_format_opts = {
+      lsp_format = 'fallback',
     },
     formatters_by_ft = {
       javascript = { 'prettier' },
@@ -20,12 +23,14 @@ local M = { -- Autoformat
       markdown = { 'prettier' },
       graphql = { 'prettier' },
       lua = { 'stylua' },
-      python = { 'isort', 'black' }, -- isort removed so code actions work with ruff
+      python = { 'isort', 'black' },
       cpp = { 'clang-format' },
       c = { 'clang-format' },
       ocaml = { 'ocamlformat' },
       go = { 'gofmt' },
       rust = { 'rustfmt' },
+      sql = { 'sql_formatter' },
+      ['*'] = { 'injected' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
@@ -33,6 +38,18 @@ local M = { -- Autoformat
       -- is found.
       -- javascript = { { "prettierd", "prettier" } },
     },
+    config = function(_, opts)
+      require('conform').setup(opts)
+      -- require('conform.formatters.yamlfix').env = {
+      --   YAMLFIX_WHITELINES = 1,
+      -- }
+      require('conform').formatters.sql_formatter = {
+        prepend_args = { '-c', vim.fn.expand '~/.config/sql_formatter.json' },
+      }
+      -- require('conform').formatters.markdownlint = {
+      --   prepend_args = { '-c', vim.fn.expand '~/.config/markdownlint.json' },
+      -- }
+    end,
   },
 }
 

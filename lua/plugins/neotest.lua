@@ -43,6 +43,7 @@ local M = {
       virtual_text = {
         format = function(diagnostic)
           local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
+          -- TODO: filter message here
           return message
         end,
       },

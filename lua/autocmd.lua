@@ -45,6 +45,7 @@ local toggle_terminal = function()
     state.floating = create_floating_window { buf = state.floating.buf }
     if vim.bo[state.floating.buf].buftype ~= 'terminal' then
       vim.cmd.terminal()
+      vim.cmd 'startinsert | 1'
     end
   else
     vim.api.nvim_win_hide(state.floating.win)
@@ -63,7 +64,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- turn off cursorline when entering buffer
+-- turn on cursorline when entering buffer
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
   callback = function()
@@ -71,7 +72,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- turn on cursorline when leaving buffers
+-- turn off cursorline when leaving buffers
 vim.api.nvim_create_autocmd('BufLeave', {
   pattern = '*',
   callback = function()

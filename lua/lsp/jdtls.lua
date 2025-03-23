@@ -2,12 +2,9 @@ local java_cmds = vim.api.nvim_create_augroup('java_cmds', { clear = true })
 local cache_vars = {}
 
 local root_files = {
-  '.git',
-  'mvnw',
-  'gradlew',
-  'pom.xml',
   'build.gradle',
-  'build.sbt',
+  'settings.gradle',
+  '.git',
 }
 
 local features = {
@@ -181,6 +178,11 @@ local function jdtls_setup(event)
       --     vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
       --   }
       -- },
+      diagnostics = {
+        disabled = {
+          { 'incomplete-tasks' },
+        },
+      },
       project = {
         referencedLibraries = {
           -- add any library jars here for the lsp to pick them up
@@ -206,10 +208,10 @@ local function jdtls_setup(event)
         includeDecompiledSources = true,
       },
       inlayHints = {
-        enabled = true,
-        --parameterNames = {
-        --   enabled = 'all' -- literals, all, none
-        --}
+        enabled = false,
+        parameterNames = {
+          enabled = 'all', -- literals, all, none
+        },
       },
       format = {
         enabled = true,
@@ -217,36 +219,36 @@ local function jdtls_setup(event)
         --   profile = 'asdf'
         -- },
       },
-    },
-    signatureHelp = {
-      enabled = true,
-    },
-    completion = {
-      favoriteStaticMembers = {
-        'org.hamcrest.MatcherAssert.assertThat',
-        'org.hamcrest.Matchers.*',
-        'org.hamcrest.CoreMatchers.*',
-        'org.junit.jupiter.api.Assertions.*',
-        'java.util.Objects.requireNonNull',
-        'java.util.Objects.requireNonNullElse',
-        'org.mockito.Mockito.*',
+      signatureHelp = {
+        enabled = true,
       },
-    },
-    contentProvider = {
-      preferred = 'fernflower',
-    },
-    extendedClientCapabilities = jdtls.extendedClientCapabilities,
-    sources = {
-      organizeImports = {
-        starThreshold = 9999,
-        staticStarThreshold = 9999,
+      completion = {
+        favoriteStaticMembers = {
+          'org.hamcrest.MatcherAssert.assertThat',
+          'org.hamcrest.Matchers.*',
+          'org.hamcrest.CoreMatchers.*',
+          'org.junit.jupiter.api.Assertions.*',
+          'java.util.Objects.requireNonNull',
+          'java.util.Objects.requireNonNullElse',
+          'org.mockito.Mockito.*',
+        },
       },
-    },
-    codeGeneration = {
-      toString = {
-        template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+      contentProvider = {
+        preferred = 'fernflower',
       },
-      useBlocks = true,
+      extendedClientCapabilities = jdtls.extendedClientCapabilities,
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        },
+      },
+      codeGeneration = {
+        toString = {
+          template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+        },
+        useBlocks = true,
+      },
     },
   }
 
@@ -256,6 +258,11 @@ local function jdtls_setup(event)
     cmd = cmd,
     settings = lsp_settings,
     on_attach = jdtls_on_attach,
+    on_init = function(client)
+      if client.config.settings then
+        client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
+      end
+    end,
     capabilities = cache_vars.capabilities,
     root_dir = jdtls.setup.find_root(root_files),
     flags = {

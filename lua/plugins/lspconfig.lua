@@ -17,12 +17,10 @@ end
 
 vim.diagnostic.config {
   -- virtual_text = false,
-
-  virtual_text = {
+  virtual_text = { -- virtual_text = true,
     source = 'if_many',
     prefix = '●',
   },
-
   float = {
     source = 'if_many',
     border = 'rounded',
@@ -36,6 +34,20 @@ vim.diagnostic.config {
   end,
 }
 
+-- vim.lsp.handlers['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
+--   if not result or not result.diagnostics or not ctx.bufnr then
+--     return
+--   end
+--
+--   -- Filter out diagnostics containing 'TODO'
+--   local filtered_diagnostics = vim.tbl_filter(function(diagnostic)
+--     return not diagnostic.message:match 'TODO'
+--   end, result.diagnostics)
+--
+--   -- Update Neovim diagnostics for the buffer
+--   vim.diagnostic.set(vim.lsp.get_active_clients({ bufnr = ctx.bufnr })[1].id, ctx.bufnr, filtered_diagnostics, config or {})
+-- end
+
 local M = { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -45,6 +57,7 @@ local M = { -- LSP Configuration & Plugins
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'folke/lazydev.nvim',
+    'saghen/blink.cmp',
   },
   config = function()
     require('lspconfig.ui.windows').default_options.border = 'single'
@@ -110,7 +123,8 @@ local M = { -- LSP Configuration & Plugins
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
@@ -355,6 +369,9 @@ local M = { -- LSP Configuration & Plugins
       'dockerfile-language-server',
       'yaml-language-server',
       'gopls',
+
+      -- sql
+      'sql-formatter',
     })
 
     -- Ensure the servers and tools above are installed

@@ -6,7 +6,8 @@ local M = { -- Adds git related signs to the gutter, as well as utilities for ma
     signs = {
       add = { text = '│' },
       change = { text = '│' },
-      delete = { text = '󰍵' },
+      -- delete = { text = '󰍵' },
+      delete = { text = '│' },
       topdelete = { text = '‾' },
       changedelete = { text = '~' },
       untracked = { text = '│' },

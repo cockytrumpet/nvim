@@ -37,9 +37,16 @@ local M = { -- theme
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
       },
       color_overrides = {},
-      custom_highlights = {},
+      custom_highlights = function(colors)
+        return {
+          -- Comment = { fg = colors.flamingo },
+          -- TabLineSel = { bg = colors.pink },
+          -- CmpBorder = { fg = colors.surface2 },
+          Pmenu = { bg = colors.none },
+        }
+      end,
       integrations = {
-        cmp = true,
+        blink_cmp = true,
         dap = true,
         dap_ui = true,
         fidget = true,

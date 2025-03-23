@@ -43,11 +43,33 @@ vim.keymap.set('n', 'gX', function()
   vim.ui.open(url)
 end, { desc = '󰙍 Open github repo' })
 
+vim.keymap.set('n', '<leader>qa', function()
+  local line = vim.fn.getline '.'
+  local lnum = vim.fn.line '.'
+  local bufname = vim.fn.bufname '%'
+  vim.fn.setqflist({
+    {
+      filename = bufname,
+      lnum = lnum,
+      text = line,
+    },
+  }, 'a') -- 'a' means "append" to the quickfix list
+end, { desc = '󰙂 Add current line to quickfix list' })
+
+vim.keymap.set('n', '<leader>qd', function()
+  local qf_list = vim.fn.getqflist()
+  local idx = vim.fn.line '.' -- Get the cursor position in the quickfix window
+  if idx > 0 and idx <= #qf_list then
+    table.remove(qf_list, idx) -- Remove the selected entry
+    vim.fn.setqflist(qf_list, 'r') -- Replace quickfix list with modified one
+  end
+end, { noremap = true, silent = true })
+
 -- [[ Diagnostic/LSP ]]
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next diagnostic message' })
 vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'show diagnostic error messages' })
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
+vim.keymap.set('n', '<leader>qf', vim.diagnostic.setloclist, { desc = 'open diagnostic quickfix list' })
 
 local function preview_location_callback(_, result)
   if result == nil or vim.tbl_isempty(result) then

@@ -1,5 +1,6 @@
 local M = {
   'CopilotC-Nvim/CopilotChat.nvim',
+  enabled = false,
   branch = 'canary',
   cmd = {
     'CopilotChat',

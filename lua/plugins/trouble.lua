@@ -19,12 +19,12 @@ local M = {
       desc = 'Symbols (Trouble)',
     },
     {
-      '<leader>tl',
+      '<leader>tL',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
       desc = 'LSP Definitions / references / ... (Trouble)',
     },
     {
-      '<leader>tL',
+      '<leader>tl',
       '<cmd>Trouble loclist toggle<cr>',
       desc = 'Location List (Trouble)',
     },
@@ -39,7 +39,10 @@ local M = {
       desc = 'Todo Comments (Trouble)',
     },
   },
-  opts = {},
+  opts = {
+    auto_close = true,
+    auto_refresh = true,
+  },
 }
 
 return M
