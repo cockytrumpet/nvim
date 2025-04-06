@@ -230,7 +230,7 @@ local M = {
             height = 'auto',
           },
           win_options = {
-            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+            winhighlight = { Normal = 'Normal', FloatBorder = 'FloatBorder' },
           },
         },
         popupmenu = {
@@ -263,7 +263,7 @@ local M = {
       },
       presets = {
         bottom_search = true,
-        command_palette = false,
+        command_palette = true,
         lsp_doc_border = true,
         inc_rename = false,
         long_message_to_split = true,

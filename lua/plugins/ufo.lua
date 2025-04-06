@@ -41,7 +41,7 @@ local M = {
     local opts = {
       -- INFO: Uncomment to use treeitter as fold provider, otherwise nvim lsp is used
       provider_selector = function(bufnr, filetype, buftype)
-        -- return { 'treesitter', 'indent' }
+        return { 'lsp', 'indent' } -- 'treesitter'
       end,
       open_fold_hl_timeout = 400,
       close_fold_kinds_for_ft = {
